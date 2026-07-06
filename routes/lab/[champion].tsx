@@ -10,9 +10,13 @@ export default define.page(function LabPage(ctx) {
   if (!champion) {
     return (
       <main>
-        <div class="divider">&gt;<b>INCONNU</b>&lt;</div>
+        <div class="divider">
+          &gt;<b>INCONNU</b>&lt;
+        </div>
         <div class="panel" style="max-width:520px;margin:0 auto">
-          <div class="phead"><span class="tag">404</span></div>
+          <div class="phead">
+            <span class="tag">404</span>
+          </div>
           <div class="pbody">
             <p>Aucun champion « {id} » n'est câblé pour l'instant.</p>
             <p style="margin-top:10px">
@@ -26,7 +30,9 @@ export default define.page(function LabPage(ctx) {
 
   return (
     <main>
-      <div class="divider">&gt;<b>LABO&nbsp;·&nbsp;{champion.name.toUpperCase()}</b>&lt;</div>
+      <div class="divider">
+        &gt;<b>LABO&nbsp;·&nbsp;{champion.name.toUpperCase()}</b>&lt;
+      </div>
 
       {/* Sélecteur de champion = liens serveur (aucun JS). Chaque champion est sa propre route. */}
       <nav class="chswitch" aria-label="Changer de champion">

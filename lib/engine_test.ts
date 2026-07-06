@@ -53,7 +53,16 @@ Deno.test("rankOf: respecte l'ordre et le rang max", () => {
 });
 
 Deno.test("mitigation: l'armure réduit les dégâts physiques", () => {
-  const s = { baseAD: 0, bonusAD: 0, totalAD: 0, ap: 0, magicPenFlat: 0, magicPenPct: 0, lethality: 0, armorPenPct: 0 };
+  const s = {
+    baseAD: 0,
+    bonusAD: 0,
+    totalAD: 0,
+    ap: 0,
+    magicPenFlat: 0,
+    magicPenPct: 0,
+    lethality: 0,
+    armorPenPct: 0,
+  };
   assertEquals(damageMultiplier("true", s, TARGET), 1);
   assert(damageMultiplier("physical", s, TARGET) < 1);
 });

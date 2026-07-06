@@ -7,11 +7,13 @@ const COMING = ["Yasuo", "Lux", "Zed", "Jinx", "Lee Sin", "Katarina", "Ekko", "V
 export default define.page(function Champions() {
   return (
     <main>
-      <div class="divider">&gt;<b>ROSTER</b>&lt;</div>
+      <div class="divider">
+        &gt;<b>ROSTER</b>&lt;
+      </div>
 
       <p class="page-lede">
-        Choisis un champion pour ouvrir son labo. Deux champions sont câblés en démo (données
-        illustratives). Le reste s'ajoute <a href="/methode">fichier par fichier</a>, par la communauté.
+        Choisis un champion pour ouvrir son labo. Deux champions sont câblés en démo (données illustratives).
+        Le reste s'ajoute <a href="/methode">fichier par fichier</a>, par la communauté.
       </p>
 
       <section class="roster">

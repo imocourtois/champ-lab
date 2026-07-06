@@ -23,8 +23,9 @@ const PRESETS: Record<string, { armor: number; mr: number; hpMax: number }> = {
 };
 
 const fr = (n: number) => Math.round(n).toLocaleString("fr-FR");
-const tyLabel = (t: DamageType) =>
-  ({ magic: "MAGIQUE", physical: "PHYSIQUE", true: "VRAI", util: "UTIL" }[t]);
+const tyLabel = (
+  t: DamageType,
+) => ({ magic: "MAGIQUE", physical: "PHYSIQUE", true: "VRAI", util: "UTIL" }[t]);
 /** token de classe CSS : "physical" -> "phys" (les autres inchangés) */
 const tyTok = (t: string) => (t === "physical" ? "phys" : t);
 
@@ -44,11 +45,24 @@ export default function ChampLab({ champion }: { champion: Champion }) {
   const [bleed, setBleed] = useState(5);
   const [target, setTarget] = useState({ armor: 60, mr: 40, hpMax: 2000, hpCur: 2000 });
   const [include, setInclude] = useState<IncludeMap>({
-    Q: true, W: true, E: true, R: true, bleed: true, rune: true,
+    Q: true,
+    W: true,
+    E: true,
+    R: true,
+    bleed: true,
+    rune: true,
   });
 
   const base: ComboInput = {
-    champion, level, itemIds, items: ITEMS, runes: RUNES, runeOn, target, bleedStacks: bleed, include,
+    champion,
+    level,
+    itemIds,
+    items: ITEMS,
+    runes: RUNES,
+    runeOn,
+    target,
+    bleedStacks: bleed,
+    include,
   };
   const result = computeCombo(base);
   const byType = damageByType(result.lines);
@@ -100,10 +114,15 @@ export default function ChampLab({ champion }: { champion: Champion }) {
         {/* COL 1 — champion + sorts */}
         <div class="col">
           <div class="panel">
-            <div class="phead"><span class="tag">CHAMPION</span><span class="st">niv {level}</span></div>
+            <div class="phead">
+              <span class="tag">CHAMPION</span>
+              <span class="st">niv {level}</span>
+            </div>
             <div class="pbody">
               <div class="portrait">
-                <div class="pface"><span class="init">{champion.initial}</span></div>
+                <div class="pface">
+                  <span class="init">{champion.initial}</span>
+                </div>
                 <div class="pmeta">
                   <div class="name">{champion.name}</div>
                   <div class="sub">{champion.title}</div>
@@ -111,7 +130,10 @@ export default function ChampLab({ champion }: { champion: Champion }) {
                 </div>
               </div>
               <div class="field">
-                <div class="flabel"><span>NIVEAU</span><span class="v">{level}</span></div>
+                <div class="flabel">
+                  <span>NIVEAU</span>
+                  <span class="v">{level}</span>
+                </div>
                 <input
                   type="range"
                   min={1}
@@ -124,9 +146,15 @@ export default function ChampLab({ champion }: { champion: Champion }) {
           </div>
 
           <div class="panel">
-            <div class="phead"><span class="tag">SORTS</span><span class="st">dégâts effectifs</span></div>
+            <div class="phead">
+              <span class="tag">SORTS</span>
+              <span class="st">dégâts effectifs</span>
+            </div>
             <div class="pbody" style="padding-top:8px">
-              <div class="abhead"><span>SORT</span><span>vs CIBLE ↓</span></div>
+              <div class="abhead">
+                <span>SORT</span>
+                <span>vs CIBLE ↓</span>
+              </div>
               {AB_KEYS.map((key) => {
                 const ab = champion.abilities[key];
                 const rank = rankOf(champion, key, level);
@@ -138,7 +166,9 @@ export default function ChampLab({ champion }: { champion: Champion }) {
                         <div class="an">{ab.name}</div>
                         <Pips rank={rank} max={ab.maxRank} />
                       </div>
-                      <div class="abr"><div class="ty" style="color:var(--dim)">UTILITAIRE</div></div>
+                      <div class="abr">
+                        <div class="ty" style="color:var(--dim)">UTILITAIRE</div>
+                      </div>
                     </div>
                   );
                 }
@@ -155,7 +185,8 @@ export default function ChampLab({ champion }: { champion: Champion }) {
                       <div>
                         <div class={`dmg c-${tyTok(ab.type)}`}>{on ? fr(dmg ?? 0) : "—"}</div>
                         <div class={`ty c-${tyTok(ab.type)}`}>
-                          <span class={`dot b-${tyTok(ab.type)}`}></span>{tyLabel(ab.type)}
+                          <span class={`dot b-${tyTok(ab.type)}`}></span>
+                          {tyLabel(ab.type)}
                         </div>
                       </div>
                       <button
@@ -200,13 +231,16 @@ export default function ChampLab({ champion }: { champion: Champion }) {
                     </button>
                   );
                 }
-                return <div class="slot"><span class="plus">+</span></div>;
+                return (
+                  <div class="slot">
+                    <span class="plus">+</span>
+                  </div>
+                );
               })}
             </div>
 
             <div class="shelfhead">
-              OBJETS —{" "}
-              {impact
+              OBJETS — {impact
                 ? <span style="color:var(--green)">Δ = gain sur ton combo actuel</span>
                 : <span style="color:var(--dim)">active le MODE IMPACT pour voir les Δ</span>}
             </div>
@@ -259,7 +293,10 @@ export default function ChampLab({ champion }: { champion: Champion }) {
 
         {/* COL 3 — cible */}
         <div class="panel">
-          <div class="phead"><span class="tag enemytag">CIBLE</span><span class="st">profil défensif</span></div>
+          <div class="phead">
+            <span class="tag enemytag">CIBLE</span>
+            <span class="st">profil défensif</span>
+          </div>
           <div class="pbody">
             <div class="presets">
               {Object.keys(PRESETS).map((k) => (
@@ -267,30 +304,77 @@ export default function ChampLab({ champion }: { champion: Champion }) {
               ))}
             </div>
             <div class="field">
-              <div class="flabel"><span>ARMURE</span><span class="v">{target.armor}</span></div>
-              <input type="range" class="en" min={0} max={350} value={target.armor}
-                onInput={(e) => patchTarget({ armor: +e.currentTarget.value })} />
+              <div class="flabel">
+                <span>ARMURE</span>
+                <span class="v">{target.armor}</span>
+              </div>
+              <input
+                type="range"
+                class="en"
+                min={0}
+                max={350}
+                value={target.armor}
+                onInput={(e) => patchTarget({ armor: +e.currentTarget.value })}
+              />
             </div>
             <div class="field">
-              <div class="flabel"><span>RÉSIST. MAGIE</span><span class="v">{target.mr}</span></div>
-              <input type="range" class="en" min={0} max={250} value={target.mr}
-                onInput={(e) => patchTarget({ mr: +e.currentTarget.value })} />
+              <div class="flabel">
+                <span>RÉSIST. MAGIE</span>
+                <span class="v">{target.mr}</span>
+              </div>
+              <input
+                type="range"
+                class="en"
+                min={0}
+                max={250}
+                value={target.mr}
+                onInput={(e) => patchTarget({ mr: +e.currentTarget.value })}
+              />
             </div>
             <div class="field">
-              <div class="flabel"><span>PV MAX</span><span class="v">{fr(target.hpMax)}</span></div>
-              <input type="range" class="en" min={600} max={4500} step={50} value={target.hpMax}
-                onInput={(e) => patchTarget({ hpMax: +e.currentTarget.value })} />
+              <div class="flabel">
+                <span>PV MAX</span>
+                <span class="v">{fr(target.hpMax)}</span>
+              </div>
+              <input
+                type="range"
+                class="en"
+                min={600}
+                max={4500}
+                step={50}
+                value={target.hpMax}
+                onInput={(e) => patchTarget({ hpMax: +e.currentTarget.value })}
+              />
             </div>
             <div class="field">
-              <div class="flabel"><span>PV ACTUELS</span><span class="v">{fr(curHP)}</span></div>
-              <input type="range" class="en" min={0} max={target.hpMax} step={25} value={curHP}
-                onInput={(e) => patchTarget({ hpCur: +e.currentTarget.value })} />
+              <div class="flabel">
+                <span>PV ACTUELS</span>
+                <span class="v">{fr(curHP)}</span>
+              </div>
+              <input
+                type="range"
+                class="en"
+                min={0}
+                max={target.hpMax}
+                step={25}
+                value={curHP}
+                onInput={(e) => patchTarget({ hpCur: +e.currentTarget.value })}
+              />
             </div>
             {champion.hasBleed && (
               <div class="field">
-                <div class="flabel"><span>STACKS HÉMORRAGIE</span><span class="v">{bleed}</span></div>
-                <input type="range" class="en" min={0} max={5} value={bleed}
-                  onInput={(e) => setBleed(+e.currentTarget.value)} />
+                <div class="flabel">
+                  <span>STACKS HÉMORRAGIE</span>
+                  <span class="v">{bleed}</span>
+                </div>
+                <input
+                  type="range"
+                  class="en"
+                  min={0}
+                  max={5}
+                  value={bleed}
+                  onInput={(e) => setBleed(+e.currentTarget.value)}
+                />
               </div>
             )}
           </div>
@@ -299,7 +383,10 @@ export default function ChampLab({ champion }: { champion: Champion }) {
 
       {/* READOUT */}
       <div class="readout">
-        <span class="ck tl"></span><span class="ck tr"></span><span class="ck bl"></span><span class="ck br"></span>
+        <span class="ck tl"></span>
+        <span class="ck tr"></span>
+        <span class="ck bl"></span>
+        <span class="ck br"></span>
         <div class="rgrid">
           <div class="combobox">
             <div class="cl">COMBO — DÉGÂTS EFFECTIFS</div>
@@ -314,12 +401,17 @@ export default function ChampLab({ champion }: { champion: Champion }) {
             <div>
               <div class="tybar">
                 {(["physical", "magic", "true"] as const).map((t) =>
-                  byType[t] > 0 ? <i class={`b-${tyTok(t)}`} style={`width:${(byType[t] / totalDmg) * 100}%`}></i> : null
+                  byType[t] > 0
+                    ? <i class={`b-${tyTok(t)}`} style={`width:${(byType[t] / totalDmg) * 100}%`}></i>
+                    : null
                 )}
               </div>
               <div class="tylegend" style="margin-top:8px">
                 {(["physical", "magic", "true"] as const).filter((t) => byType[t] > 0).map((t) => (
-                  <span><span class={`dot b-${tyTok(t)}`}></span>{tyLabel(t)} {fr(byType[t])}</span>
+                  <span>
+                    <span class={`dot b-${tyTok(t)}`}></span>
+                    {tyLabel(t)} {fr(byType[t])}
+                  </span>
                 ))}
               </div>
             </div>
@@ -329,20 +421,27 @@ export default function ChampLab({ champion }: { champion: Champion }) {
               </div>
               {champion.hasBleed && result.execHP > 0 && (
                 <div class="bpline exec">
-                  <span class="lead">EXÉCUTION (R)</span> <span class="c-true">vrai</span> si PV ≤ <b>{fr(result.execHP)}</b>
+                  <span class="lead">EXÉCUTION (R)</span> <span class="c-true">vrai</span> si PV ≤{" "}
+                  <b>{fr(result.execHP)}</b>
                 </div>
               )}
             </div>
             <div class="hpwrap">
               <div class="hplabel">
                 <span>PV actuels {fr(curHP)} / {fr(target.hpMax)}</span>
-                <span>{kill ? `combo ${fr(result.total)} → excès ${fr(-remain)}` : `combo ${fr(result.total)} → reste ${fr(remain)}`}</span>
+                <span>
+                  {kill
+                    ? `combo ${fr(result.total)} → excès ${fr(-remain)}`
+                    : `combo ${fr(result.total)} → reste ${fr(remain)}`}
+                </span>
               </div>
               <div class={`hpbar${kill ? " kill" : ""}`}>
                 <div class="hpfill" style={`width:${(curHP / target.hpMax) * 100}%`}></div>
                 <div
                   class="hpdmg"
-                  style={`right:${100 - (curHP / target.hpMax) * 100}%;width:${(Math.min(result.total, curHP) / target.hpMax) * 100}%`}
+                  style={`right:${100 - (curHP / target.hpMax) * 100}%;width:${
+                    (Math.min(result.total, curHP) / target.hpMax) * 100
+                  }%`}
                 >
                 </div>
                 <div class="hpstate">{kill ? "CIBLE ÉLIMINÉE" : ""}</div>

@@ -63,8 +63,8 @@ export function Footer() {
     <footer class="foot">
       <span class="warn">⚠ DONNÉES ILLUSTRATIVES</span>
       <span>
-        Les valeurs viendraient de Meraki (lolstaticdata), rafraîchies à chaque patch. CHAMP LAB n'est
-        pas affilié à Riot Games.
+        Les valeurs viendraient de Meraki (lolstaticdata), rafraîchies à chaque patch. CHAMP LAB n'est pas
+        affilié à Riot Games.
       </span>
       <span>MIT · look 100% CSS</span>
     </footer>

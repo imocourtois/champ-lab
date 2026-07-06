@@ -19,8 +19,18 @@ export const ITEMS: Record<string, Item> = {
 
   // --- orientés AD / bruiser ---
   ion: { id: "ion", name: "Bottes ioniennes", short: "IONIE", stats: { abilityHaste: 20 } },
-  trinity: { id: "trinity", name: "Force du Trinité", short: "TRINITÉ", stats: { ad: 36, hp: 300, abilityHaste: 20 } },
-  cleaver: { id: "cleaver", name: "Fendoir noir", short: "CLEAVER", stats: { ad: 45, hp: 350, armorPenPercent: 0.30, abilityHaste: 25 } },
+  trinity: {
+    id: "trinity",
+    name: "Force du Trinité",
+    short: "TRINITÉ",
+    stats: { ad: 36, hp: 300, abilityHaste: 20 },
+  },
+  cleaver: {
+    id: "cleaver",
+    name: "Fendoir noir",
+    short: "CLEAVER",
+    stats: { ad: 45, hp: 350, armorPenPercent: 0.30, abilityHaste: 25 },
+  },
   stride: { id: "stride", name: "Brise-foulée", short: "STRIDE", stats: { ad: 50, hp: 350 } },
   sundered: { id: "sundered", name: "Ciel brisé", short: "SUNDER", stats: { ad: 55, hp: 450 } },
   steraks: { id: "steraks", name: "Calibre de Sterak", short: "STERAK", stats: { hp: 400 } },
