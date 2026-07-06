@@ -34,15 +34,13 @@ jobs:
       - uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
-      - name: Build
+      - name: Build with Fresh
         run: deno task build
-      - name: Deploy to gh-pages
+      - name: Deploy to Deno Deploy
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git checkout --orphan gh-pages
-          git rm -rf .
-          cp -r _fresh/* .
-          git add .
-          git commit -m "Deploy: $(date)"
-          git push -f origin gh-pages
+          deno run -A https://deno.land/x/deploy/deployctl.ts \
+            --project=champ-lab \
+            --config=deno.json \
+            main.ts
+        env:
+          DENO_DEPLOY_TOKEN: ${{ secrets.DENO_DEPLOY_TOKEN }}
