@@ -82,14 +82,21 @@ export interface Item {
   /** libellé court affiché dans les slots */
   short: string;
   stats: ItemStats;
+  /** URL de l'icône officielle de l'objet (Data Dragon). */
+  icon?: string;
 }
+
+/** Comportement d'une rune modélisé dans lib/engine.ts. "none" = non modélisée (neutre). */
+export type RuneKind = "electro" | "conqueror" | "none";
 
 export interface RuneDef {
   id: string;
   name: string;
   description: string;
   /** identifiant du comportement modélisé dans lib/engine.ts */
-  kind: "electro" | "conqueror";
+  kind: RuneKind;
+  /** URL de l'icône officielle de la rune (Data Dragon). */
+  icon?: string;
 }
 
 export interface TargetProfile {

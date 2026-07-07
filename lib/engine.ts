@@ -223,7 +223,16 @@ export function damageByType(lines: DamageLine[]): Record<"magic" | "physical" |
  */
 export function itemImpact(base: ComboInput, itemId: string): number {
   if (base.itemIds.includes(itemId)) return 0;
-  const before = computeCombo(base).total;
+  return itemImpactFrom(base, computeCombo(base).total, itemId);
+}
+
+/**
+ * Variante optimisée : le total "avant" est déjà connu (calculé une fois par
+ * l'appelant). Évite de recalculer le combo de base pour chaque objet listé —
+ * divise par ~2 le coût du mode impact sur un grand catalogue.
+ */
+export function itemImpactFrom(base: ComboInput, beforeTotal: number, itemId: string): number {
+  if (base.itemIds.includes(itemId)) return 0;
   const after = computeCombo({ ...base, itemIds: [...base.itemIds, itemId] }).total;
-  return after - before;
+  return after - beforeTotal;
 }

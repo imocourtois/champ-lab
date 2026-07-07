@@ -111,7 +111,7 @@ export const CHAMPION_OVERRIDES: Record<string, ChampionOverride> = {
   // --- Les deux champions "seed" historiques : on conserve leur réglage soigné.
   ahri: {
     adaptive: "AP",
-    keystone: "electro",
+    keystone: "electrocute",
     skillOrder: ["Q", "W", "E", "Q", "Q", "R", "Q", "E", "Q", "E", "R", "E", "E", "W", "W", "R", "W", "W"],
     shelf: [
       "sorcerersshoes",

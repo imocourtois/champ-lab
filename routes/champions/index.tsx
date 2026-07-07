@@ -25,7 +25,6 @@ export default define.page(function Champions() {
             </div>
             <div class="rt-name">{c.name}</div>
             <div class="rt-sub">{c.adaptive}</div>
-            <span class={`rt-badge ${c.adaptive === "AP" ? "ap" : "ad"}`}>PRÊT</span>
           </a>
         ))}
       </section>

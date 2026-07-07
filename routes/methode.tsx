@@ -14,18 +14,36 @@ export default define.page(function Methode() {
             <span class="tag">DONNÉES</span>
           </div>
           <div class="pbody">
-            <h3>D'où viennent les chiffres</h3>
+            <h3>D'où viennent les chiffres — 3 sources</h3>
+            <ul>
+              <li>
+                <b>Data Dragon</b> (Riot) — liste des champions, objets, runes, disponibilité en classé et
+                {" "}
+                <b>images officielles</b>. Fiable pour les stats plates.
+              </li>
+              <li>
+                <b>Community Dragon</b> — assets et ressources graphiques supplémentaires.
+              </li>
+              <li>
+                <b>Meraki (lolstaticdata)</b>{" "}
+                — données détaillées des compétences et calculs (ratios AP / AD), que Data Dragon n'expose pas
+                proprement.
+              </li>
+            </ul>
             <p>
-              Data Dragon (Riot) est fiable pour les stats plates, mais ses données de sorts sont souvent
-              inexactes et difficilement exploitables. La source de référence pour les coefficients propres,
-              c'est <b>Meraki (lolstaticdata)</b>, parsé depuis le wiki et rafraîchi par patch.
+              Le pipeline est <b>branché</b> : <code>deno task data</code> récupère tout le roster et génère
+              {" "}
+              <code>data/generated/</code>. Roster actuel : <b>{DATA_META.champions} champions</b>,{" "}
+              <b>{DATA_META.items} objets</b> et <b>{DATA_META.runes} runes</b> (généré le{" "}
+              {DATA_META.generatedAt}).
             </p>
             <p>
-              Le pipeline est <b>branché</b> : <code>deno task data</code>{" "}
-              récupère tout le roster depuis Meraki + Data Dragon et génère{" "}
-              <code>data/generated/</code>. Roster actuel : <b>{DATA_META.champions} champions</b> et{" "}
-              <b>{DATA_META.items} objets</b>, patch <b>{DATA_META.patch}</b> (généré le{" "}
-              {DATA_META.generatedAt}).
+              <b>Provenance honnête.</b> Liste, runes et icônes : Data Dragon{" "}
+              <b>{DATA_META.patch}</b>. Stats & ratios champions : Meraki, patch <b>{DATA_META.statsPatch}</b>
+              {" "}
+              — Meraki peut être en retard sur le patch courant. Un audit croisé (<code>
+                deno task audit
+              </code>) mesure la concordance avec Data Dragon et signale les écarts.
             </p>
             <p>
               ⚠ Le pipeline n'extrait que ce que le moteur sait modéliser : stats de base, ratios AP / AD / AD

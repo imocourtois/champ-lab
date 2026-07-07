@@ -15,6 +15,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 350,
       "abilityHaste": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/8020.png",
   },
   "actualizer": {
     "id": "actualizer",
@@ -24,6 +25,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 90,
       "abilityHaste": 10,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2522.png",
   },
   "archangelsstaff": {
     "id": "archangelsstaff",
@@ -33,6 +35,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 70,
       "abilityHaste": 25,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3003.png",
   },
   "ardentcenser": {
     "id": "ardentcenser",
@@ -41,6 +44,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ap": 45,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3504.png",
   },
   "armoredadvance": {
     "id": "armoredadvance",
@@ -49,6 +53,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "armor": 35,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3174.png",
   },
   "axiomarc": {
     "id": "axiomarc",
@@ -59,6 +64,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "abilityHaste": 20,
       "lethality": 18,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6696.png",
   },
   "bandlepipes": {
     "id": "bandlepipes",
@@ -69,6 +75,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "armor": 20,
       "abilityHaste": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2524.png",
   },
   "bansheesveil": {
     "id": "bansheesveil",
@@ -77,6 +84,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ap": 105,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3102.png",
   },
   "bastionbreaker": {
     "id": "bastionbreaker",
@@ -87,6 +95,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "abilityHaste": 15,
       "lethality": 22,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2520.png",
   },
   "blackcleaver": {
     "id": "blackcleaver",
@@ -98,6 +107,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "abilityHaste": 20,
       "armorPenPercent": 0.3,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3071.png",
   },
   "blackfiretorch": {
     "id": "blackfiretorch",
@@ -107,6 +117,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 80,
       "abilityHaste": 20,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2503.png",
   },
   "bladeoftheruinedking": {
     "id": "bladeoftheruinedking",
@@ -115,6 +126,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 40,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3153.png",
   },
   "bloodletterscurse": {
     "id": "bloodletterscurse",
@@ -125,6 +137,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 400,
       "abilityHaste": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/8010.png",
   },
   "bloodsong": {
     "id": "bloodsong",
@@ -133,6 +146,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 200,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3877.png",
   },
   "bloodthirster": {
     "id": "bloodthirster",
@@ -141,6 +155,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 80,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3072.png",
   },
   "celestialopposition": {
     "id": "celestialopposition",
@@ -149,6 +164,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 200,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3869.png",
   },
   "chempunkchainsword": {
     "id": "chempunkchainsword",
@@ -159,6 +175,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 450,
       "abilityHaste": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6609.png",
   },
   "cosmicdrive": {
     "id": "cosmicdrive",
@@ -169,6 +186,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 350,
       "abilityHaste": 25,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/4629.png",
   },
   "crimsonlucidity": {
     "id": "crimsonlucidity",
@@ -177,6 +195,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "abilityHaste": 20,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3171.png",
   },
   "cryptbloom": {
     "id": "cryptbloom",
@@ -187,6 +206,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "abilityHaste": 20,
       "magicPenPercent": 0.3,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3137.png",
   },
   "dawncore": {
     "id": "dawncore",
@@ -195,6 +215,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ap": 45,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6621.png",
   },
   "deadmansplate": {
     "id": "deadmansplate",
@@ -204,6 +225,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 350,
       "armor": 55,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3742.png",
   },
   "deathsdance": {
     "id": "deathsdance",
@@ -214,6 +236,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "armor": 50,
       "abilityHaste": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6333.png",
   },
   "dreammaker": {
     "id": "dreammaker",
@@ -222,6 +245,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 200,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3870.png",
   },
   "duskanddawn": {
     "id": "duskanddawn",
@@ -232,6 +256,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 350,
       "abilityHaste": 20,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2510.png",
   },
   "echoesofhelia": {
     "id": "echoesofhelia",
@@ -242,6 +267,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 200,
       "abilityHaste": 20,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6620.png",
   },
   "eclipse": {
     "id": "eclipse",
@@ -251,6 +277,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 60,
       "abilityHaste": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6692.png",
   },
   "edgeofnight": {
     "id": "edgeofnight",
@@ -261,6 +288,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 250,
       "lethality": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3814.png",
   },
   "endlesshunger": {
     "id": "endlesshunger",
@@ -269,6 +297,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 65,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2517.png",
   },
   "essencereaver": {
     "id": "essencereaver",
@@ -278,6 +307,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 50,
       "abilityHaste": 20,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3508.png",
   },
   "experimentalhexplate": {
     "id": "experimentalhexplate",
@@ -287,6 +317,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 40,
       "hp": 450,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3073.png",
   },
   "forceofnature": {
     "id": "forceofnature",
@@ -295,6 +326,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 400,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/4401.png",
   },
   "frozenheart": {
     "id": "frozenheart",
@@ -304,6 +336,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "armor": 75,
       "abilityHaste": 20,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3110.png",
   },
   "guardianangel": {
     "id": "guardianangel",
@@ -313,6 +346,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 55,
       "armor": 45,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3026.png",
   },
   "guinsoosrageblade": {
     "id": "guinsoosrageblade",
@@ -322,6 +356,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 30,
       "ap": 30,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3124.png",
   },
   "heartsteel": {
     "id": "heartsteel",
@@ -330,6 +365,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 900,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3084.png",
   },
   "hexopticsc44": {
     "id": "hexopticsc44",
@@ -338,6 +374,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 55,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2523.png",
   },
   "hextechgunblade": {
     "id": "hextechgunblade",
@@ -347,6 +384,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 40,
       "ap": 80,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3146.png",
   },
   "hextechrocketbelt": {
     "id": "hextechrocketbelt",
@@ -357,6 +395,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 300,
       "abilityHaste": 20,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3152.png",
   },
   "hollowradiance": {
     "id": "hollowradiance",
@@ -366,6 +405,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 400,
       "abilityHaste": 10,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6664.png",
   },
   "horizonfocus": {
     "id": "horizonfocus",
@@ -375,6 +415,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 75,
       "abilityHaste": 25,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/4628.png",
   },
   "hubris": {
     "id": "hubris",
@@ -385,6 +426,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "abilityHaste": 10,
       "lethality": 18,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6697.png",
   },
   "hullbreaker": {
     "id": "hullbreaker",
@@ -394,6 +436,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 40,
       "hp": 500,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3181.png",
   },
   "iceborngauntlet": {
     "id": "iceborngauntlet",
@@ -404,6 +447,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "armor": 50,
       "abilityHaste": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6662.png",
   },
   "immortalshieldbow": {
     "id": "immortalshieldbow",
@@ -412,6 +456,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 55,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6673.png",
   },
   "imperialmandate": {
     "id": "imperialmandate",
@@ -421,6 +466,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 60,
       "abilityHaste": 20,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/4005.png",
   },
   "infinityedge": {
     "id": "infinityedge",
@@ -429,6 +475,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 75,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3031.png",
   },
   "ionianbootsoflucidity": {
     "id": "ionianbootsoflucidity",
@@ -437,6 +484,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "abilityHaste": 10,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3158.png",
   },
   "jakshotheprotean": {
     "id": "jakshotheprotean",
@@ -446,6 +494,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 350,
       "armor": 45,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6665.png",
   },
   "kaenicrookern": {
     "id": "kaenicrookern",
@@ -454,6 +503,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 400,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2504.png",
   },
   "knightsvow": {
     "id": "knightsvow",
@@ -464,6 +514,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "armor": 40,
       "abilityHaste": 10,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3109.png",
   },
   "krakenslayer": {
     "id": "krakenslayer",
@@ -472,6 +523,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 45,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6672.png",
   },
   "liandrystorment": {
     "id": "liandrystorment",
@@ -481,6 +533,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 60,
       "hp": 300,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6653.png",
   },
   "lichbane": {
     "id": "lichbane",
@@ -490,6 +543,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 100,
       "abilityHaste": 10,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3100.png",
   },
   "locketoftheironsolari": {
     "id": "locketoftheironsolari",
@@ -500,6 +554,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "armor": 25,
       "abilityHaste": 10,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3190.png",
   },
   "lorddominiksregards": {
     "id": "lorddominiksregards",
@@ -509,6 +564,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 35,
       "armorPenPercent": 0.35,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3036.png",
   },
   "ludensecho": {
     "id": "ludensecho",
@@ -518,6 +574,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 100,
       "abilityHaste": 10,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6655.png",
   },
   "malignance": {
     "id": "malignance",
@@ -527,6 +584,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 90,
       "abilityHaste": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3118.png",
   },
   "manamune": {
     "id": "manamune",
@@ -536,6 +594,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 35,
       "abilityHaste": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3004.png",
   },
   "mawofmalmortius": {
     "id": "mawofmalmortius",
@@ -545,6 +604,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 60,
       "abilityHaste": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3156.png",
   },
   "mejaissoulstealer": {
     "id": "mejaissoulstealer",
@@ -554,6 +614,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 20,
       "hp": 100,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3041.png",
   },
   "mercurialscimitar": {
     "id": "mercurialscimitar",
@@ -562,6 +623,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 50,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3139.png",
   },
   "mikaelsblessing": {
     "id": "mikaelsblessing",
@@ -571,6 +633,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 250,
       "abilityHaste": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3222.png",
   },
   "moonstonerenewer": {
     "id": "moonstonerenewer",
@@ -581,6 +644,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 200,
       "abilityHaste": 20,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6617.png",
   },
   "morellonomicon": {
     "id": "morellonomicon",
@@ -591,6 +655,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 350,
       "abilityHaste": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3165.png",
   },
   "mortalreminder": {
     "id": "mortalreminder",
@@ -600,6 +665,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 35,
       "armorPenPercent": 0.3,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3033.png",
   },
   "nashorstooth": {
     "id": "nashorstooth",
@@ -609,6 +675,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 80,
       "abilityHaste": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3115.png",
   },
   "opportunity": {
     "id": "opportunity",
@@ -618,6 +685,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 55,
       "lethality": 18,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6701.png",
   },
   "overlordsbloodmail": {
     "id": "overlordsbloodmail",
@@ -627,6 +695,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 30,
       "hp": 550,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2501.png",
   },
   "platedsteelcaps": {
     "id": "platedsteelcaps",
@@ -635,6 +704,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "armor": 25,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3047.png",
   },
   "profanehydra": {
     "id": "profanehydra",
@@ -645,6 +715,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "abilityHaste": 10,
       "lethality": 18,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6698.png",
   },
   "protoplasmharness": {
     "id": "protoplasmharness",
@@ -654,6 +725,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 600,
       "abilityHaste": 20,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2525.png",
   },
   "rabadonsdeathcap": {
     "id": "rabadonsdeathcap",
@@ -663,6 +735,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 130,
       "apAmp": 0.3,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3089.png",
   },
   "randuinsomen": {
     "id": "randuinsomen",
@@ -672,6 +745,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 350,
       "armor": 75,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3143.png",
   },
   "ravenoushydra": {
     "id": "ravenoushydra",
@@ -681,6 +755,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 65,
       "abilityHaste": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3074.png",
   },
   "redemption": {
     "id": "redemption",
@@ -690,6 +765,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 30,
       "abilityHaste": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3107.png",
   },
   "riftmaker": {
     "id": "riftmaker",
@@ -700,6 +776,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 350,
       "abilityHaste": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/4633.png",
   },
   "rodofages": {
     "id": "rodofages",
@@ -709,6 +786,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 45,
       "hp": 350,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6657.png",
   },
   "rylaiscrystalscepter": {
     "id": "rylaiscrystalscepter",
@@ -718,6 +796,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 65,
       "hp": 400,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3116.png",
   },
   "serpentsfang": {
     "id": "serpentsfang",
@@ -727,6 +806,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 55,
       "lethality": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6695.png",
   },
   "seryldasgrudge": {
     "id": "seryldasgrudge",
@@ -737,6 +817,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "abilityHaste": 15,
       "armorPenPercent": 0.35,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6694.png",
   },
   "shadowflame": {
     "id": "shadowflame",
@@ -746,6 +827,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 110,
       "magicPenFlat": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/4645.png",
   },
   "shurelyasbattlesong": {
     "id": "shurelyasbattlesong",
@@ -755,6 +837,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 50,
       "abilityHaste": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2065.png",
   },
   "solsticesleigh": {
     "id": "solsticesleigh",
@@ -763,6 +846,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 200,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3876.png",
   },
   "sorcerersshoes": {
     "id": "sorcerersshoes",
@@ -771,6 +855,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "magicPenFlat": 12,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3020.png",
   },
   "spearofshojin": {
     "id": "spearofshojin",
@@ -780,6 +865,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 45,
       "hp": 450,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3161.png",
   },
   "spellslingersshoes": {
     "id": "spellslingersshoes",
@@ -789,6 +875,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "magicPenFlat": 18,
       "magicPenPercent": 0.08,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3175.png",
   },
   "spiritvisage": {
     "id": "spiritvisage",
@@ -798,6 +885,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 400,
       "abilityHaste": 10,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3065.png",
   },
   "staffofflowingwater": {
     "id": "staffofflowingwater",
@@ -807,6 +895,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 35,
       "abilityHaste": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6616.png",
   },
   "statikkshiv": {
     "id": "statikkshiv",
@@ -815,6 +904,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 45,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3087.png",
   },
   "steraksgage": {
     "id": "steraksgage",
@@ -823,6 +913,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 400,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3053.png",
   },
   "stormrazor": {
     "id": "stormrazor",
@@ -831,6 +922,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 50,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3097.png",
   },
   "stormsurge": {
     "id": "stormsurge",
@@ -840,6 +932,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 90,
       "magicPenFlat": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/4646.png",
   },
   "stridebreaker": {
     "id": "stridebreaker",
@@ -849,6 +942,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 40,
       "hp": 450,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6631.png",
   },
   "sunderedsky": {
     "id": "sunderedsky",
@@ -859,6 +953,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 400,
       "abilityHaste": 10,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6610.png",
   },
   "sunfireaegis": {
     "id": "sunfireaegis",
@@ -869,6 +964,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "armor": 50,
       "abilityHaste": 10,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3068.png",
   },
   "terminus": {
     "id": "terminus",
@@ -877,6 +973,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 30,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3302.png",
   },
   "thecollector": {
     "id": "thecollector",
@@ -886,6 +983,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 50,
       "lethality": 10,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6676.png",
   },
   "thornmail": {
     "id": "thornmail",
@@ -895,6 +993,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 150,
       "armor": 75,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3075.png",
   },
   "titanichydra": {
     "id": "titanichydra",
@@ -904,6 +1003,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 40,
       "hp": 600,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3748.png",
   },
   "trailblazer": {
     "id": "trailblazer",
@@ -913,6 +1013,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 250,
       "armor": 40,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3002.png",
   },
   "trinityforce": {
     "id": "trinityforce",
@@ -923,6 +1024,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 333,
       "abilityHaste": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3078.png",
   },
   "umbralglaive": {
     "id": "umbralglaive",
@@ -933,6 +1035,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "abilityHaste": 15,
       "lethality": 18,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3179.png",
   },
   "unendingdespair": {
     "id": "unendingdespair",
@@ -943,6 +1046,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "armor": 50,
       "abilityHaste": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2502.png",
   },
   "voidstaff": {
     "id": "voidstaff",
@@ -952,6 +1056,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 95,
       "magicPenPercent": 0.4,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3135.png",
   },
   "voltaiccyclosword": {
     "id": "voltaiccyclosword",
@@ -962,6 +1067,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "abilityHaste": 10,
       "lethality": 18,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/6699.png",
   },
   "warmogsarmor": {
     "id": "warmogsarmor",
@@ -970,6 +1076,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 1000,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3083.png",
   },
   "whisperingcirclet": {
     "id": "whisperingcirclet",
@@ -978,6 +1085,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 200,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2526.png",
   },
   "wintersapproach": {
     "id": "wintersapproach",
@@ -987,6 +1095,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 550,
       "abilityHaste": 15,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3119.png",
   },
   "youmuusghostblade": {
     "id": "youmuusghostblade",
@@ -996,6 +1105,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ad": 55,
       "lethality": 18,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3142.png",
   },
   "yuntalwildarrows": {
     "id": "yuntalwildarrows",
@@ -1004,6 +1114,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 50,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3032.png",
   },
   "zazzaksrealmspike": {
     "id": "zazzaksrealmspike",
@@ -1012,6 +1123,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 200,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3871.png",
   },
   "zekesconvergence": {
     "id": "zekesconvergence",
@@ -1022,6 +1134,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "armor": 25,
       "abilityHaste": 10,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3050.png",
   },
   "zephyr": {
     "id": "zephyr",
@@ -1030,6 +1143,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "abilityHaste": 30,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3172.png",
   },
   "zhonyashourglass": {
     "id": "zhonyashourglass",
@@ -1039,5 +1153,6 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "ap": 105,
       "armor": 50,
     },
+    "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3157.png",
   },
 };
