@@ -209,7 +209,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "akali": {
     "id": "akali",
@@ -512,7 +512,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "ambessa": {
     "id": "ambessa",
@@ -720,7 +720,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "anivia": {
     "id": "anivia",
@@ -820,7 +820,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "annie": {
     "id": "annie",
@@ -926,7 +926,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "aphelios": {
     "id": "aphelios",
@@ -1206,7 +1206,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "aurora": {
     "id": "aurora",
@@ -1306,7 +1306,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "azir": {
     "id": "azir",
@@ -1425,7 +1425,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "bard": {
     "id": "bard",
@@ -1521,7 +1521,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "belveth": {
     "id": "belveth",
@@ -1716,7 +1716,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "brand": {
     "id": "brand",
@@ -1822,7 +1822,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "braum": {
     "id": "braum",
@@ -1918,7 +1918,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "briar": {
     "id": "briar",
@@ -2327,7 +2327,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "chogath": {
     "id": "chogath",
@@ -2433,7 +2433,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "corki": {
     "id": "corki",
@@ -2744,7 +2744,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "drmundo": {
     "id": "drmundo",
@@ -3038,7 +3038,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "elise": {
     "id": "elise",
@@ -3132,7 +3132,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "evelynn": {
     "id": "evelynn",
@@ -3236,7 +3236,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "ezreal": {
     "id": "ezreal",
@@ -3446,7 +3446,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "fiora": {
     "id": "fiora",
@@ -3648,7 +3648,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "galio": {
     "id": "galio",
@@ -3748,7 +3748,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "gangplank": {
     "id": "gangplank",
@@ -4159,7 +4159,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "graves": {
     "id": "graves",
@@ -4363,7 +4363,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "hecarim": {
     "id": "hecarim",
@@ -4565,7 +4565,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "hwei": {
     "id": "hwei",
@@ -4653,7 +4653,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "illaoi": {
     "id": "illaoi",
@@ -4950,7 +4950,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "janna": {
     "id": "janna",
@@ -5056,7 +5056,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "jarvaniv": {
     "id": "jarvaniv",
@@ -5771,7 +5771,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "kalista": {
     "id": "kalista",
@@ -5970,7 +5970,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "karthus": {
     "id": "karthus",
@@ -6074,7 +6074,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "kassadin": {
     "id": "kassadin",
@@ -6180,7 +6180,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "katarina": {
     "id": "katarina",
@@ -6277,7 +6277,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "kayle": {
     "id": "kayle",
@@ -6592,7 +6592,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "khazix": {
     "id": "khazix",
@@ -7106,7 +7106,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "leesin": {
     "id": "leesin",
@@ -7422,7 +7422,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "lissandra": {
     "id": "lissandra",
@@ -7528,7 +7528,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "lucian": {
     "id": "lucian",
@@ -7729,7 +7729,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "lux": {
     "id": "lux",
@@ -7835,7 +7835,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "malphite": {
     "id": "malphite",
@@ -7941,7 +7941,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "malzahar": {
     "id": "malzahar",
@@ -8061,7 +8061,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "maokai": {
     "id": "maokai",
@@ -8167,7 +8167,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "masteryi": {
     "id": "masteryi",
@@ -8361,7 +8361,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "milio": {
     "id": "milio",
@@ -8461,7 +8461,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "missfortune": {
     "id": "missfortune",
@@ -8674,7 +8674,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "morgana": {
     "id": "morgana",
@@ -8780,7 +8780,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "naafiri": {
     "id": "naafiri",
@@ -8986,7 +8986,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "nasus": {
     "id": "nasus",
@@ -9186,7 +9186,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "neeko": {
     "id": "neeko",
@@ -9292,7 +9292,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "nidalee": {
     "id": "nidalee",
@@ -9388,7 +9388,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "nilah": {
     "id": "nilah",
@@ -9692,7 +9692,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "olaf": {
     "id": "olaf",
@@ -9898,7 +9898,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "ornn": {
     "id": "ornn",
@@ -10609,7 +10609,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "rammus": {
     "id": "rammus",
@@ -10901,7 +10901,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "renata": {
     "id": "renata",
@@ -10997,7 +10997,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "renekton": {
     "id": "renekton",
@@ -11414,7 +11414,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "ryze": {
     "id": "ryze",
@@ -11516,7 +11516,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "samira": {
     "id": "samira",
@@ -11728,7 +11728,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "senna": {
     "id": "senna",
@@ -11935,7 +11935,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "sett": {
     "id": "sett",
@@ -12455,7 +12455,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "sion": {
     "id": "sion",
@@ -12960,7 +12960,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "soraka": {
     "id": "soraka",
@@ -13066,7 +13066,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "swain": {
     "id": "swain",
@@ -13172,7 +13172,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "sylas": {
     "id": "sylas",
@@ -13268,7 +13268,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "syndra": {
     "id": "syndra",
@@ -13374,7 +13374,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "tahmkench": {
     "id": "tahmkench",
@@ -13474,7 +13474,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "taliyah": {
     "id": "taliyah",
@@ -13570,7 +13570,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "talon": {
     "id": "talon",
@@ -13864,7 +13864,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "thresh": {
     "id": "thresh",
@@ -14364,7 +14364,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "twitch": {
     "id": "twitch",
@@ -14952,7 +14952,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "velkoz": {
     "id": "velkoz",
@@ -15058,7 +15058,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "vex": {
     "id": "vex",
@@ -15164,7 +15164,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "vi": {
     "id": "vi",
@@ -15455,7 +15455,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "vladimir": {
     "id": "vladimir",
@@ -15559,7 +15559,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "volibear": {
     "id": "volibear",
@@ -16061,7 +16061,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "xinzhao": {
     "id": "xinzhao",
@@ -16568,7 +16568,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "zac": {
     "id": "zac",
@@ -16672,7 +16672,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "zed": {
     "id": "zed",
@@ -16982,7 +16982,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "zilean": {
     "id": "zilean",
@@ -17076,7 +17076,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "zoe": {
     "id": "zoe",
@@ -17191,7 +17191,7 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
   "zyra": {
     "id": "zyra",
@@ -17291,6 +17291,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    "keystone": "electro",
+    "keystone": "electrocute",
   },
 };

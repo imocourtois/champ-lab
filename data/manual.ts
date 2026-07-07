@@ -71,6 +71,6 @@ export const MANUAL_CHAMPIONS: Record<string, Champion> = {
       "voidstaff",
       "zhonyashourglass",
     ],
-    keystone: "electro",
+    keystone: "electrocute",
   },
 };

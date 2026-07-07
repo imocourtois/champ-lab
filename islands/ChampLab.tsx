@@ -2,14 +2,14 @@
 import { useState } from "preact/hooks";
 import type { AbilityKey, Champion, DamageType, IncludeMap } from "@/data/types.ts";
 import { ITEMS, itemStatLine } from "@/data/items.ts";
-import { RUNES } from "@/data/runes.ts";
+import { RUNE_LIST, RUNES } from "@/data/runes.ts";
 import {
   abilityRaw,
   type ComboInput,
   computeCombo,
   damageByType,
   damageMultiplier,
-  itemImpact,
+  itemImpactFrom,
   rankOf,
 } from "@/lib/engine.ts";
 
@@ -302,7 +302,18 @@ export default function ChampLab({ champion }: { champion: Champion }) {
                       onClick={() => removeItem(i)}
                     >
                       <span class="rm">✕</span>
-                      <span class="code">{ITEMS[id].short}</span>
+                      {ITEMS[id].icon
+                        ? (
+                          <img
+                            class="ico"
+                            src={ITEMS[id].icon}
+                            alt=""
+                            loading="lazy"
+                            width={28}
+                            height={28}
+                          />
+                        )
+                        : <span class="code">{ITEMS[id].short}</span>}
                       <span class="glyph">{itemStatLine(id).split(" · ")[0]}</span>
                     </button>
                   );
@@ -337,7 +348,9 @@ export default function ChampLab({ champion }: { champion: Champion }) {
                 const full = itemIds.length >= MAX_ITEMS;
                 let delta = null;
                 if (impact && !equipped) {
-                  const diff = itemImpact(base, id);
+                  // `result.total` est déjà le combo "avant" : on le réutilise
+                  // au lieu de le recalculer pour chacun des ~115 objets.
+                  const diff = itemImpactFrom(base, result.total, id);
                   const cls = diff > 0.5 ? "pos" : diff < -0.5 ? "neg" : "zero";
                   delta = <span class={`delta ${cls}`}>{diff > 0 ? "+" : ""}{fr(diff)}</span>;
                 } else if (equipped) {
@@ -351,7 +364,9 @@ export default function ChampLab({ champion }: { champion: Champion }) {
                     disabled={equipped || full}
                     onClick={() => addItem(id)}
                   >
-                    <span class="code">{it.short}</span>
+                    {it.icon
+                      ? <img class="ico" src={it.icon} alt="" loading="lazy" width={26} height={26} />
+                      : <span class="code">{it.short}</span>}
                     <span class="nm">{it.name}</span>
                     <span class="stats">{itemStatLine(id)}</span>
                     {delta}
@@ -363,15 +378,19 @@ export default function ChampLab({ champion }: { champion: Champion }) {
             <div class="shelfhead" style="margin-top:12px">
               RUNE KEYSTONE — <span style="color:var(--dim)">choix libre</span>
             </div>
-            <div class="runepick">
-              {Object.values(RUNES).map((r) => {
+            <div class="runepick scroll">
+              {RUNE_LIST.map((r) => {
                 const active = runeOn && r.id === keystoneId;
+                const modeled = r.kind !== "none";
                 return (
                   <button
                     type="button"
                     key={r.id}
-                    class={`rune${active ? "" : " off"}${champion.adaptive === "AD" ? " ad" : ""}`}
+                    class={`rune${active ? "" : " off"}${modeled ? " modeled" : ""}${
+                      champion.adaptive === "AD" ? " ad" : ""
+                    }`}
                     aria-pressed={active}
+                    title={modeled ? "Effet modélisé dans le calcul" : "Visible mais non modélisée (neutre)"}
                     onClick={() => {
                       // Clique la rune active = la couper ; sinon l'active.
                       if (runeOn && r.id === keystoneId) {
@@ -385,13 +404,15 @@ export default function ChampLab({ champion }: { champion: Champion }) {
                     }}
                   >
                     <div class="l">
-                      <div class="rr"></div>
+                      {r.icon
+                        ? <img class="rico" src={r.icon} alt="" loading="lazy" width={30} height={30} />
+                        : <div class="rr"></div>}
                       <div>
                         <div class="rn">{r.name}</div>
                         <div class="rc">{r.description}</div>
                       </div>
                     </div>
-                    <div class="contrib">{active ? runeContrib : "OFF"}</div>
+                    <div class="contrib">{modeled ? (active ? runeContrib : "OFF") : "—"}</div>
                   </button>
                 );
               })}

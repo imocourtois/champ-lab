@@ -126,7 +126,7 @@ Deno.test("rangs manuels : un sort au rang 0 n'apparaît pas dans le combo", () 
 
 Deno.test("keystone au choix : override change la rune appliquée", () => {
   // Ahri par défaut = electro (ligne ✦). Forcer conqueror retire cette ligne.
-  const electro = computeCombo(input("ahri", ["ludensecho"], { keystoneId: "electro" }));
+  const electro = computeCombo(input("ahri", ["ludensecho"], { keystoneId: "electrocute" }));
   const conq = computeCombo(input("ahri", ["ludensecho"], { keystoneId: "conqueror" }));
   assert(electro.lines.some((l) => l.key === "✦"), "electro doit poser une ligne de burst");
   assert(!conq.lines.some((l) => l.key === "✦"), "conquérant ne pose pas de ligne electro");

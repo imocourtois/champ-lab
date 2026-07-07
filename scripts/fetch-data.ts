@@ -85,6 +85,8 @@ interface MChampion {
   key: string;
   name: string;
   title: string;
+  /** dernier patch où Meraki a mis à jour ce champion (peut être ancien) */
+  patchLastChanged?: string;
   adaptiveType?: string;
   attackType?: string;
   stats: MChampionStats;
@@ -248,7 +250,8 @@ function mapChampion(m: MChampion): Champion {
   }
 
   const defaultShelf = adaptive === "AD" ? DEFAULT_AD_SHELF : DEFAULT_AP_SHELF;
-  const defaultKeystone = adaptive === "AD" ? "conqueror" : "electro";
+  // ids Data Dragon (slugifiés) des runes modélisées.
+  const defaultKeystone = adaptive === "AD" ? "conqueror" : "electrocute";
 
   return {
     id,
@@ -352,16 +355,103 @@ ${body}
 `;
 }
 
-function renderMeta(patch: string, counts: { champions: number; items: number }): string {
+/**
+ * Runes keystone : comportement modélisé dans le moteur, par id Data Dragon.
+ * Seules celles listées ici ont un effet réel ; les autres sont "none" (neutres).
+ */
+const RUNE_KIND: Record<string, "electro" | "conqueror"> = {
+  "8112": "electro", // Électrocution (Domination)
+  "8010": "conqueror", // Conquérant (Precision)
+};
+
+interface DDRuneSlot {
+  runes: Array<{ id: number; key: string; name: string; icon: string; shortDesc?: string }>;
+}
+interface DDRuneTree {
+  id: number;
+  name: string;
+  slots: DDRuneSlot[];
+}
+
+interface GenRune {
+  id: string;
+  name: string;
+  description: string;
+  kind: "electro" | "conqueror" | "none";
+  icon: string;
+  tree: string;
+}
+
+/** Extrait les runes keystone (slot 0 de chaque arbre) depuis Data Dragon. */
+function mapRunes(trees: DDRuneTree[]): GenRune[] {
+  const out: GenRune[] = [];
+  for (const tree of trees) {
+    const keystones = tree.slots[0]?.runes ?? [];
+    for (const k of keystones) {
+      const idStr = String(k.id);
+      const kind: GenRune["kind"] = Object.hasOwn(RUNE_KIND, idStr) ? RUNE_KIND[idStr] : "none";
+      const modeled = kind !== "none";
+      const shortDesc = (k.shortDesc ?? "").replace(/<[^>]+>/g, "").trim();
+      out.push({
+        id: slugify(k.key),
+        name: k.name,
+        description: modeled
+          ? `keystone · ${tree.name} · calcul modélisé`
+          : `keystone · ${tree.name}${shortDesc ? ` · ${shortDesc}` : ""} · non modélisée`,
+        kind,
+        icon: `${DDRAGON}/cdn/img/${k.icon}`,
+        tree: tree.name,
+      });
+    }
+  }
+  // Les runes modélisées d'abord (elles pilotent le calcul).
+  return out.sort((a, b) => {
+    const am = a.kind !== "none", bm = b.kind !== "none";
+    if (am !== bm) return am ? -1 : 1;
+    return a.name.localeCompare(b.name, "fr");
+  });
+}
+
+function renderRunes(runes: GenRune[], patch: string): string {
+  const body = runes
+    .map((r) => `  ${JSON.stringify(r.id)}: ${JSON.stringify(r, null, 2).replace(/\n/g, "\n  ")},`)
+    .join("\n");
+  return `${header(patch)}
+import type { RuneDef } from "../types.ts";
+
+/** Runes keystone (Data Dragon). \`kind\` pilote le calcul ; "none" = neutre. */
+export const GENERATED_RUNES: Record<string, RuneDef & { tree: string }> = {
+${body}
+};
+`;
+}
+
+function renderMeta(
+  patch: string,
+  counts: { champions: number; items: number; runes: number; statsPatch: string },
+): string {
   return `${header(patch)}
 /** Métadonnées de génération (affichées dans /methode). */
 export const DATA_META = {
+  /** patch Data Dragon (liste champions, runes, icônes, disponibilité SR) */
   patch: ${JSON.stringify(patch)},
+  /** patch réel des stats/ratios champions côté Meraki (peut être plus ancien) */
+  statsPatch: ${JSON.stringify(counts.statsPatch)},
   generatedAt: ${JSON.stringify(new Date().toISOString().slice(0, 10))},
   champions: ${counts.champions},
   items: ${counts.items},
+  runes: ${counts.runes},
 } as const;
 `;
+}
+
+/** Patch le plus fréquent parmi les champions Meraki (leur vraie fraîcheur). */
+function mostCommonPatch(patches: string[]): string {
+  const count = new Map<string, number>();
+  for (const p of patches) count.set(p, (count.get(p) ?? 0) + 1);
+  let best = "?", n = 0;
+  for (const [p, c] of count) if (c > n) [best, n] = [p, c];
+  return best;
 }
 
 // ---------------------------------------------------------------------------
@@ -383,6 +473,7 @@ async function main() {
   console.log(`  ${championIds.length} champions à traiter.`);
 
   const champions: Champion[] = [];
+  const merakiPatches: string[] = [];
   let done = 0;
   // Petites vagues pour ne pas marteler le CDN.
   const BATCH = 12;
@@ -396,6 +487,7 @@ async function main() {
       if (r.status === "fulfilled") {
         try {
           champions.push(mapChampion(r.value));
+          if (r.value.patchLastChanged) merakiPatches.push(r.value.patchLastChanged);
         } catch (e) {
           console.warn(`  ⚠ mapping échoué pour ${slice[j]} : ${(e as Error).message}`);
         }
@@ -407,6 +499,14 @@ async function main() {
     console.log(`  …${done}/${championIds.length}`);
   }
   champions.sort((a, b) => a.name.localeCompare(b.name, "fr"));
+
+  const statsPatch = mostCommonPatch(merakiPatches);
+  if (statsPatch !== "?" && !patch.startsWith(statsPatch.split(".")[0])) {
+    console.log(
+      `  ⚠ Meraki est sur le patch ${statsPatch}, Data Dragon sur ${patch} : ` +
+        `les stats champions peuvent être en retard (voir deno task audit).`,
+    );
+  }
 
   // --- Objets ---
   // Disponibilité sur la Faille de l'invocateur (classé) : Data Dragon expose
@@ -447,6 +547,8 @@ async function main() {
       name: ov?.name ?? m.name,
       short: itemShort(m.name, ov),
       stats: merged,
+      // Icône officielle Data Dragon (clé = id numérique Riot).
+      icon: `${DDRAGON}/cdn/${patch}/img/item/${m.id}.png`,
     });
   }
   items.sort((a, b) => a.name.localeCompare(b.name, "fr"));
@@ -468,13 +570,28 @@ async function main() {
   }
   if (dropped) console.log(`  ⚠ ${dropped} référence(s) d'étagère inconnue(s) écartée(s).`);
 
+  // --- Runes ---
+  console.log("▶ Récupération des runes (Data Dragon)…");
+  const runeTrees = await fetchJson<DDRuneTree[]>(
+    `${DDRAGON}/cdn/${patch}/data/en_US/runesReforged.json`,
+  );
+  const runes = mapRunes(runeTrees);
+  const modeledRunes = runes.filter((r) => r.kind !== "none").length;
+  console.log(`  ${runes.length} runes keystone (${modeledRunes} modélisées).`);
+
   // --- Écriture ---
   await Deno.mkdir(OUT_DIR, { recursive: true });
   await Deno.writeTextFile(new URL("champions.gen.ts", OUT_DIR), renderChampions(champions, patch));
   await Deno.writeTextFile(new URL("items.gen.ts", OUT_DIR), renderItems(items, patch));
+  await Deno.writeTextFile(new URL("runes.gen.ts", OUT_DIR), renderRunes(runes, patch));
   await Deno.writeTextFile(
     new URL("meta.gen.ts", OUT_DIR),
-    renderMeta(patch, { champions: champions.length, items: items.length }),
+    renderMeta(patch, {
+      champions: champions.length,
+      items: items.length,
+      runes: runes.length,
+      statsPatch,
+    }),
   );
 
   // Reformate les fichiers générés pour qu'ils passent `deno fmt --check`
@@ -489,7 +606,7 @@ async function main() {
   if (!success) console.warn("  ⚠ `deno fmt` a échoué — lance-le à la main.");
 
   console.log(
-    `✔ Généré : ${champions.length} champions, ${items.length} objets → data/generated/`,
+    `✔ Généré : ${champions.length} champions, ${items.length} objets, ${runes.length} runes → data/generated/`,
   );
   console.log("  Lance ensuite : deno task check && deno task test");
 }
