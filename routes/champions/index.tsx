@@ -22,16 +22,6 @@ export default define.page(function Champions() {
           <a href={`/lab/${c.id}`} class="rtile">
             <div class="pface">
               <span class="init">{c.initial}</span>
-              {c.portrait && (
-                <img
-                  class="pimg"
-                  src={c.portrait}
-                  alt={c.name}
-                  loading="lazy"
-                  width={74}
-                  height={74}
-                />
-              )}
             </div>
             <div class="rt-name">{c.name}</div>
             <div class="rt-sub">{c.adaptive}</div>

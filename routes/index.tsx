@@ -80,16 +80,6 @@ export default define.page(function Home() {
           <a href={`/lab/${c.id}`} class="champtile">
             <div class="pface small">
               <span class="init">{c.initial}</span>
-              {c.portrait && (
-                <img
-                  class="pimg"
-                  src={c.portrait}
-                  alt={c.name}
-                  loading="lazy"
-                  width={46}
-                  height={46}
-                />
-              )}
             </div>
             <div class="ct-meta">
               <div class="ct-name">{c.name}</div>

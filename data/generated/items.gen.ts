@@ -25,15 +25,6 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "abilityHaste": 10,
     },
   },
-  "anathemaschains": {
-    "id": "anathemaschains",
-    "name": "Anathema's Chains",
-    "short": "ANATHEMA",
-    "stats": {
-      "hp": 650,
-      "abilityHaste": 20,
-    },
-  },
   "archangelsstaff": {
     "id": "archangelsstaff",
     "name": "Archangel's Staff",
@@ -57,14 +48,6 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "ARMORED",
     "stats": {
       "armor": 35,
-    },
-  },
-  "atmasreckoning": {
-    "id": "atmasreckoning",
-    "name": "Atma's Reckoning",
-    "short": "ATMAS",
-    "stats": {
-      "hp": 700,
     },
   },
   "axiomarc": {
@@ -346,15 +329,6 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "HEARTSTE",
     "stats": {
       "hp": 900,
-    },
-  },
-  "hellfirehatchet": {
-    "id": "hellfirehatchet",
-    "name": "Hellfire Hatchet",
-    "short": "HELLFIRE",
-    "stats": {
-      "ad": 35,
-      "lethality": 12,
     },
   },
   "hexopticsc44": {
@@ -654,16 +628,6 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 550,
     },
   },
-  "perplexity": {
-    "id": "perplexity",
-    "name": "Perplexity",
-    "short": "PERPLEXI",
-    "stats": {
-      "ap": 60,
-      "magicPenPercent": 0.3,
-      "armorPenPercent": 0.22,
-    },
-  },
   "platedsteelcaps": {
     "id": "platedsteelcaps",
     "name": "Plated Steelcaps",
@@ -734,15 +698,6 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ap": 70,
       "hp": 350,
-      "abilityHaste": 15,
-    },
-  },
-  "riteofruin": {
-    "id": "riteofruin",
-    "name": "Rite of Ruin",
-    "short": "RITE",
-    "stats": {
-      "ap": 50,
       "abilityHaste": 15,
     },
   },
@@ -824,15 +779,6 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "ad": 45,
       "hp": 450,
-    },
-  },
-  "spectralcutlass": {
-    "id": "spectralcutlass",
-    "name": "Spectral Cutlass",
-    "short": "SPECTRAL",
-    "stats": {
-      "ad": 50,
-      "lethality": 15,
     },
   },
   "spellslingersshoes": {
@@ -922,16 +868,6 @@ export const GENERATED_ITEMS: Record<string, Item> = {
       "hp": 350,
       "armor": 50,
       "abilityHaste": 10,
-    },
-  },
-  "swordofblossomingdawn": {
-    "id": "swordofblossomingdawn",
-    "name": "Sword of Blossoming Dawn",
-    "short": "SWORD",
-    "stats": {
-      "ap": 45,
-      "hp": 200,
-      "abilityHaste": 15,
     },
   },
   "terminus": {
@@ -1050,15 +986,6 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "stats": {
       "hp": 550,
       "abilityHaste": 15,
-    },
-  },
-  "wordlesspromise": {
-    "id": "wordlesspromise",
-    "name": "Wordless Promise",
-    "short": "WORDLESS",
-    "stats": {
-      "ap": 50,
-      "abilityHaste": 25,
     },
   },
   "youmuusghostblade": {

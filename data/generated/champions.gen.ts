@@ -12,7 +12,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Aatrox",
     "title": "the Darkin Blade",
     "initial": "A",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Aatrox/square",
     "adaptive": "AD",
     "base": {
       "ad": 60,
@@ -111,7 +110,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Ahri",
     "title": "the Nine-Tailed Fox",
     "initial": "A",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Ahri/square",
     "adaptive": "AP",
     "base": {
       "ad": 53,
@@ -218,7 +216,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Akali",
     "title": "the Rogue Assassin",
     "initial": "A",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Akali/square",
     "adaptive": "AD",
     "base": {
       "ad": 62,
@@ -322,7 +319,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Akshan",
     "title": "the Rogue Sentinel",
     "initial": "A",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Akshan/square",
     "adaptive": "AD",
     "base": {
       "ad": 52,
@@ -421,7 +417,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Alistar",
     "title": "the Minotaur",
     "initial": "A",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Alistar/square",
     "adaptive": "AP",
     "base": {
       "ad": 62,
@@ -524,7 +519,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Ambessa",
     "title": "Matriarch of War",
     "initial": "A",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Ambessa/square",
     "adaptive": "AD",
     "base": {
       "ad": 63,
@@ -631,7 +625,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Amumu",
     "title": "the Sad Mummy",
     "initial": "A",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Amumu/square",
     "adaptive": "AP",
     "base": {
       "ad": 57,
@@ -734,7 +727,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Anivia",
     "title": "the Cryophoenix",
     "initial": "A",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Anivia/square",
     "adaptive": "AP",
     "base": {
       "ad": 51,
@@ -835,7 +827,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Annie",
     "title": "the Dark Child",
     "initial": "A",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Annie/square",
     "adaptive": "AP",
     "base": {
       "ad": 50,
@@ -942,7 +933,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Aphelios",
     "title": "the Weapon of the Faithful",
     "initial": "A",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Aphelios/square",
     "adaptive": "AD",
     "base": {
       "ad": 55,
@@ -1027,7 +1017,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Ashe",
     "title": "the Frost Archer",
     "initial": "A",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Ashe/square",
     "adaptive": "AD",
     "base": {
       "ad": 59,
@@ -1124,7 +1113,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Aurelion Sol",
     "title": "The Star Forger",
     "initial": "A",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/AurelionSol/square",
     "adaptive": "AP",
     "base": {
       "ad": 58,
@@ -1225,7 +1213,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Aurora",
     "title": "the Witch Between Worlds",
     "initial": "A",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Aurora/square",
     "adaptive": "AP",
     "base": {
       "ad": 53,
@@ -1326,7 +1313,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Azir",
     "title": "the Emperor of the Sands",
     "initial": "A",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Azir/square",
     "adaptive": "AP",
     "base": {
       "ad": 56,
@@ -1446,7 +1432,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Bard",
     "title": "the Wandering Caretaker",
     "initial": "B",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Bard/square",
     "adaptive": "AP",
     "base": {
       "ad": 52,
@@ -1543,7 +1528,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Bel'Veth",
     "title": "the Empress of the Void",
     "initial": "B",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Belveth/square",
     "adaptive": "AD",
     "base": {
       "ad": 60,
@@ -1645,7 +1629,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Blitzcrank",
     "title": "the Great Steam Golem",
     "initial": "B",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Blitzcrank/square",
     "adaptive": "AP",
     "base": {
       "ad": 62,
@@ -1740,7 +1723,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Brand",
     "title": "the Burning Vengeance",
     "initial": "B",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Brand/square",
     "adaptive": "AP",
     "base": {
       "ad": 57,
@@ -1847,7 +1829,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Braum",
     "title": "the Heart of the Freljord",
     "initial": "B",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Braum/square",
     "adaptive": "AP",
     "base": {
       "ad": 55,
@@ -1944,7 +1925,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Briar",
     "title": "the Restrained Hunger",
     "initial": "B",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Briar/square",
     "adaptive": "AD",
     "base": {
       "ad": 60,
@@ -2050,7 +2030,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Caitlyn",
     "title": "the Sheriff of Piltover",
     "initial": "C",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Caitlyn/square",
     "adaptive": "AD",
     "base": {
       "ad": 60,
@@ -2157,7 +2136,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Camille",
     "title": "the Steel Shadow",
     "initial": "C",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Camille/square",
     "adaptive": "AD",
     "base": {
       "ad": 68,
@@ -2250,7 +2228,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Cassiopeia",
     "title": "the Serpent's Embrace",
     "initial": "C",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Cassiopeia/square",
     "adaptive": "AP",
     "base": {
       "ad": 53,
@@ -2357,7 +2334,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Cho'Gath",
     "title": "the Terror of the Void",
     "initial": "C",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Chogath/square",
     "adaptive": "AP",
     "base": {
       "ad": 69,
@@ -2464,7 +2440,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Corki",
     "title": "the Daring Bombardier",
     "initial": "C",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Corki/square",
     "adaptive": "AD",
     "base": {
       "ad": 52,
@@ -2573,7 +2548,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Darius",
     "title": "the Hand of Noxus",
     "initial": "D",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Darius/square",
     "adaptive": "AD",
     "hasBleed": true,
     "base": {
@@ -2671,7 +2645,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Diana",
     "title": "Scorn of the Moon",
     "initial": "D",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Diana/square",
     "adaptive": "AP",
     "base": {
       "ad": 57,
@@ -2778,7 +2751,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Dr. Mundo",
     "title": "the Madman of Zaun",
     "initial": "D",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/DrMundo/square",
     "adaptive": "AD",
     "base": {
       "ad": 61,
@@ -2867,7 +2839,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Draven",
     "title": "the Glorious Executioner",
     "initial": "D",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Draven/square",
     "adaptive": "AD",
     "base": {
       "ad": 62,
@@ -2968,7 +2939,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Ekko",
     "title": "the Boy Who Shattered Time",
     "initial": "E",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Ekko/square",
     "adaptive": "AP",
     "base": {
       "ad": 58,
@@ -3075,7 +3045,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Elise",
     "title": "the Spider Queen",
     "initial": "E",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Elise/square",
     "adaptive": "AP",
     "base": {
       "ad": 55,
@@ -3170,7 +3139,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Evelynn",
     "title": "Agony's Embrace",
     "initial": "E",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Evelynn/square",
     "adaptive": "AP",
     "base": {
       "ad": 61,
@@ -3275,7 +3243,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Ezreal",
     "title": "the Prodigal Explorer",
     "initial": "E",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Ezreal/square",
     "adaptive": "AD",
     "base": {
       "ad": 60,
@@ -3386,7 +3353,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Fiddlesticks",
     "title": "the Ancient Fear",
     "initial": "F",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Fiddlesticks/square",
     "adaptive": "AP",
     "base": {
       "ad": 55,
@@ -3487,7 +3453,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Fiora",
     "title": "the Grand Duelist",
     "initial": "F",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Fiora/square",
     "adaptive": "AD",
     "base": {
       "ad": 66,
@@ -3584,7 +3549,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Fizz",
     "title": "the Tidal Trickster",
     "initial": "F",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Fizz/square",
     "adaptive": "AP",
     "base": {
       "ad": 58,
@@ -3691,7 +3655,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Galio",
     "title": "the Colossus",
     "initial": "G",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Galio/square",
     "adaptive": "AP",
     "base": {
       "ad": 59,
@@ -3792,7 +3755,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Gangplank",
     "title": "the Saltwater Scourge",
     "initial": "G",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Gangplank/square",
     "adaptive": "AD",
     "base": {
       "ad": 64,
@@ -3897,7 +3859,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Garen",
     "title": "The Might of Demacia",
     "initial": "G",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Garen/square",
     "adaptive": "AD",
     "base": {
       "ad": 69,
@@ -4000,7 +3961,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Gnar",
     "title": "the Missing Link",
     "initial": "G",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Gnar/square",
     "adaptive": "AD",
     "base": {
       "ad": 60,
@@ -4106,7 +4066,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Gragas",
     "title": "the Rabble Rouser",
     "initial": "G",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Gragas/square",
     "adaptive": "AP",
     "base": {
       "ad": 64,
@@ -4207,7 +4166,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Graves",
     "title": "the Outlaw",
     "initial": "G",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Graves/square",
     "adaptive": "AD",
     "base": {
       "ad": 68,
@@ -4312,7 +4270,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Gwen",
     "title": "The Hallowed Seamstress",
     "initial": "G",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Gwen/square",
     "adaptive": "AP",
     "base": {
       "ad": 63,
@@ -4413,7 +4370,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Hecarim",
     "title": "the Shadow of War",
     "initial": "H",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Hecarim/square",
     "adaptive": "AD",
     "base": {
       "ad": 66,
@@ -4520,7 +4476,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Heimerdinger",
     "title": "the Revered Inventor",
     "initial": "H",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Heimerdinger/square",
     "adaptive": "AP",
     "base": {
       "ad": 56,
@@ -4617,7 +4572,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Hwei",
     "title": "the Visionary",
     "initial": "H",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Hwei/square",
     "adaptive": "AP",
     "base": {
       "ad": 54,
@@ -4706,7 +4660,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Illaoi",
     "title": "the Kraken Priestess",
     "initial": "I",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Illaoi/square",
     "adaptive": "AD",
     "base": {
       "ad": 65,
@@ -4795,7 +4748,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Irelia",
     "title": "the Blade Dancer",
     "initial": "I",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Irelia/square",
     "adaptive": "AD",
     "base": {
       "ad": 65,
@@ -4903,7 +4855,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Ivern",
     "title": "the Green Father",
     "initial": "I",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Ivern/square",
     "adaptive": "AP",
     "base": {
       "ad": 50,
@@ -5006,7 +4957,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Janna",
     "title": "the Storm's Fury",
     "initial": "J",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Janna/square",
     "adaptive": "AP",
     "base": {
       "ad": 47,
@@ -5113,7 +5063,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Jarvan IV",
     "title": "the Exemplar of Demacia",
     "initial": "J",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/JarvanIV/square",
     "adaptive": "AD",
     "base": {
       "ad": 64,
@@ -5214,7 +5163,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Jax",
     "title": "Grandmaster at Arms",
     "initial": "J",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Jax/square",
     "adaptive": "AD",
     "base": {
       "ad": 68,
@@ -5321,7 +5269,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Jayce",
     "title": "the Defender of Tomorrow",
     "initial": "J",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Jayce/square",
     "adaptive": "AD",
     "base": {
       "ad": 59,
@@ -5422,7 +5369,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Jhin",
     "title": "the Virtuoso",
     "initial": "J",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Jhin/square",
     "adaptive": "AD",
     "base": {
       "ad": 59,
@@ -5531,7 +5477,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Jinx",
     "title": "the Loose Cannon",
     "initial": "J",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Jinx/square",
     "adaptive": "AD",
     "base": {
       "ad": 59,
@@ -5632,7 +5577,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "K'Sante",
     "title": "the Pride of Nazumah",
     "initial": "K",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/KSante/square",
     "adaptive": "AD",
     "base": {
       "ad": 64,
@@ -5731,7 +5675,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Kai'Sa",
     "title": "Daughter of the Void",
     "initial": "K",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Kaisa/square",
     "adaptive": "AP",
     "base": {
       "ad": 59,
@@ -5835,7 +5778,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Kalista",
     "title": "the Spear of Vengeance",
     "initial": "K",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Kalista/square",
     "adaptive": "AD",
     "base": {
       "ad": 59,
@@ -5933,7 +5875,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Karma",
     "title": "the Enlightened One",
     "initial": "K",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Karma/square",
     "adaptive": "AP",
     "base": {
       "ad": 51,
@@ -6036,7 +5977,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Karthus",
     "title": "the Deathsinger",
     "initial": "K",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Karthus/square",
     "adaptive": "AP",
     "base": {
       "ad": 46,
@@ -6141,7 +6081,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Kassadin",
     "title": "the Void Walker",
     "initial": "K",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Kassadin/square",
     "adaptive": "AP",
     "base": {
       "ad": 59,
@@ -6248,7 +6187,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Katarina",
     "title": "the Sinister Blade",
     "initial": "K",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Katarina/square",
     "adaptive": "AP",
     "base": {
       "ad": 58,
@@ -6346,7 +6284,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Kayle",
     "title": "the Righteous",
     "initial": "K",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Kayle/square",
     "adaptive": "AD",
     "base": {
       "ad": 50,
@@ -6456,7 +6393,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Kayn",
     "title": "the Shadow Reaper",
     "initial": "K",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Kayn/square",
     "adaptive": "AD",
     "base": {
       "ad": 68,
@@ -6557,7 +6493,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Kennen",
     "title": "the Heart of the Tempest",
     "initial": "K",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Kennen/square",
     "adaptive": "AP",
     "base": {
       "ad": 48,
@@ -6664,7 +6599,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Kha'Zix",
     "title": "the Voidreaver",
     "initial": "K",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Khazix/square",
     "adaptive": "AD",
     "base": {
       "ad": 60,
@@ -6767,7 +6701,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Kindred",
     "title": "The Eternal Hunters",
     "initial": "K",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Kindred/square",
     "adaptive": "AD",
     "base": {
       "ad": 65,
@@ -6873,7 +6806,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Kled",
     "title": "the Cantankerous Cavalier",
     "initial": "K",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Kled/square",
     "adaptive": "AD",
     "base": {
       "ad": 65,
@@ -6974,7 +6906,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Kog'Maw",
     "title": "the Mouth of the Abyss",
     "initial": "K",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/KogMaw/square",
     "adaptive": "AD",
     "base": {
       "ad": 61,
@@ -7076,7 +7007,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "LeBlanc",
     "title": "the Deceiver",
     "initial": "L",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Leblanc/square",
     "adaptive": "AP",
     "base": {
       "ad": 55,
@@ -7183,7 +7113,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Lee Sin",
     "title": "the Blind Monk",
     "initial": "L",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/LeeSin/square",
     "adaptive": "AD",
     "base": {
       "ad": 69,
@@ -7290,7 +7219,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Leona",
     "title": "the Radiant Dawn",
     "initial": "L",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Leona/square",
     "adaptive": "AD",
     "base": {
       "ad": 60,
@@ -7395,7 +7323,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Lillia",
     "title": "the Bashful Bloom",
     "initial": "L",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Lillia/square",
     "adaptive": "AP",
     "base": {
       "ad": 61,
@@ -7502,7 +7429,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Lissandra",
     "title": "the Ice Witch",
     "initial": "L",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Lissandra/square",
     "adaptive": "AP",
     "base": {
       "ad": 55,
@@ -7609,7 +7535,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Lucian",
     "title": "the Purifier",
     "initial": "L",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Lucian/square",
     "adaptive": "AD",
     "base": {
       "ad": 60,
@@ -7711,7 +7636,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Lulu",
     "title": "the Fae Sorceress",
     "initial": "L",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Lulu/square",
     "adaptive": "AP",
     "base": {
       "ad": 47,
@@ -7812,7 +7736,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Lux",
     "title": "the Lady of Luminosity",
     "initial": "L",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Lux/square",
     "adaptive": "AP",
     "base": {
       "ad": 54,
@@ -7919,7 +7842,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Malphite",
     "title": "Shard of the Monolith",
     "initial": "M",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Malphite/square",
     "adaptive": "AP",
     "base": {
       "ad": 62,
@@ -8026,7 +7948,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Malzahar",
     "title": "the Prophet of the Void",
     "initial": "M",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Malzahar/square",
     "adaptive": "AP",
     "base": {
       "ad": 55,
@@ -8147,7 +8068,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Maokai",
     "title": "the Twisted Treant",
     "initial": "M",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Maokai/square",
     "adaptive": "AP",
     "base": {
       "ad": 64,
@@ -8254,7 +8174,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Master Yi",
     "title": "the Wuju Bladesman",
     "initial": "M",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/MasterYi/square",
     "adaptive": "AD",
     "base": {
       "ad": 65,
@@ -8351,7 +8270,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Mel",
     "title": "the Soul's Reflection",
     "initial": "M",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Mel/square",
     "adaptive": "AP",
     "base": {
       "ad": 54,
@@ -8450,7 +8368,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Milio",
     "title": "The Gentle Flame",
     "initial": "M",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Milio/square",
     "adaptive": "AP",
     "base": {
       "ad": 48,
@@ -8551,7 +8468,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Miss Fortune",
     "title": "the Bounty Hunter",
     "initial": "M",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/MissFortune/square",
     "adaptive": "AD",
     "base": {
       "ad": 53,
@@ -8656,7 +8572,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Mordekaiser",
     "title": "the Iron Revenant",
     "initial": "M",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Mordekaiser/square",
     "adaptive": "AP",
     "base": {
       "ad": 61,
@@ -8766,7 +8681,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Morgana",
     "title": "the Fallen",
     "initial": "M",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Morgana/square",
     "adaptive": "AP",
     "base": {
       "ad": 56,
@@ -8873,7 +8787,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Naafiri",
     "title": "the Hound of a Hundred Bites",
     "initial": "N",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Naafiri/square",
     "adaptive": "AD",
     "base": {
       "ad": 55,
@@ -8974,7 +8887,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Nami",
     "title": "the Tidecaller",
     "initial": "N",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Nami/square",
     "adaptive": "AP",
     "base": {
       "ad": 54,
@@ -9081,7 +8993,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Nasus",
     "title": "the Curator of the Sands",
     "initial": "N",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Nasus/square",
     "adaptive": "AD",
     "base": {
       "ad": 67,
@@ -9176,7 +9087,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Nautilus",
     "title": "the Titan of the Depths",
     "initial": "N",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Nautilus/square",
     "adaptive": "AP",
     "base": {
       "ad": 61,
@@ -9283,7 +9193,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Neeko",
     "title": "the Curious Chameleon",
     "initial": "N",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Neeko/square",
     "adaptive": "AP",
     "base": {
       "ad": 48,
@@ -9390,7 +9299,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Nidalee",
     "title": "the Bestial Huntress",
     "initial": "N",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Nidalee/square",
     "adaptive": "AP",
     "base": {
       "ad": 58,
@@ -9487,7 +9395,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Nilah",
     "title": "the Joy Unbound",
     "initial": "N",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Nilah/square",
     "adaptive": "AD",
     "base": {
       "ad": 58,
@@ -9588,7 +9495,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Nocturne",
     "title": "the Eternal Nightmare",
     "initial": "N",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Nocturne/square",
     "adaptive": "AD",
     "base": {
       "ad": 62,
@@ -9689,7 +9595,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Nunu & Willump",
     "title": "the Boy and His Yeti",
     "initial": "N",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Nunu/square",
     "adaptive": "AP",
     "base": {
       "ad": 61,
@@ -9794,7 +9699,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Olaf",
     "title": "the Berserker",
     "initial": "O",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Olaf/square",
     "adaptive": "AD",
     "base": {
       "ad": 68,
@@ -9895,7 +9799,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Orianna",
     "title": "the Lady of Clockwork",
     "initial": "O",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Orianna/square",
     "adaptive": "AP",
     "base": {
       "ad": 44,
@@ -10002,7 +9905,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Ornn",
     "title": "The Fire Below the Mountain",
     "initial": "O",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Ornn/square",
     "adaptive": "AD",
     "base": {
       "ad": 69,
@@ -10101,7 +10003,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Pantheon",
     "title": "the Unbreakable Spear",
     "initial": "P",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Pantheon/square",
     "adaptive": "AD",
     "base": {
       "ad": 64,
@@ -10203,7 +10104,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Poppy",
     "title": "Keeper of the Hammer",
     "initial": "P",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Poppy/square",
     "adaptive": "AD",
     "base": {
       "ad": 60,
@@ -10310,7 +10210,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Pyke",
     "title": "the Bloodharbor Ripper",
     "initial": "P",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Pyke/square",
     "adaptive": "AD",
     "base": {
       "ad": 62,
@@ -10407,7 +10306,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Qiyana",
     "title": "Empress of the Elements",
     "initial": "Q",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Qiyana/square",
     "adaptive": "AD",
     "base": {
       "ad": 66,
@@ -10515,7 +10413,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Quinn",
     "title": "Demacia's Wings",
     "initial": "Q",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Quinn/square",
     "adaptive": "AD",
     "base": {
       "ad": 59,
@@ -10613,7 +10510,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Rakan",
     "title": "The Charmer",
     "initial": "R",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Rakan/square",
     "adaptive": "AP",
     "base": {
       "ad": 62,
@@ -10720,7 +10616,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Rammus",
     "title": "the Armordillo",
     "initial": "R",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Rammus/square",
     "adaptive": "AD",
     "base": {
       "ad": 55,
@@ -10819,7 +10714,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Rek'Sai",
     "title": "the Void Burrower",
     "initial": "R",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/RekSai/square",
     "adaptive": "AD",
     "base": {
       "ad": 58,
@@ -10914,7 +10808,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Rell",
     "title": "the Iron Maiden",
     "initial": "R",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Rell/square",
     "adaptive": "AP",
     "base": {
       "ad": 55,
@@ -11015,7 +10908,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Renata Glasc",
     "title": "the Chem-Baroness",
     "initial": "R",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Renata/square",
     "adaptive": "AP",
     "base": {
       "ad": 49,
@@ -11112,7 +11004,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Renekton",
     "title": "the Butcher of the Sands",
     "initial": "R",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Renekton/square",
     "adaptive": "AD",
     "base": {
       "ad": 69,
@@ -11220,7 +11111,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Rengar",
     "title": "the Pridestalker",
     "initial": "R",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Rengar/square",
     "adaptive": "AD",
     "base": {
       "ad": 68,
@@ -11323,7 +11213,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Riven",
     "title": "the Exile",
     "initial": "R",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Riven/square",
     "adaptive": "AD",
     "base": {
       "ad": 64,
@@ -11426,7 +11315,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Rumble",
     "title": "the Mechanized Menace",
     "initial": "R",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Rumble/square",
     "adaptive": "AP",
     "base": {
       "ad": 64,
@@ -11533,7 +11421,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Ryze",
     "title": "the Rune Mage",
     "initial": "R",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Ryze/square",
     "adaptive": "AP",
     "base": {
       "ad": 58,
@@ -11636,7 +11523,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Samira",
     "title": "the Desert Rose",
     "initial": "S",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Samira/square",
     "adaptive": "AD",
     "base": {
       "ad": 57,
@@ -11743,7 +11629,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Sejuani",
     "title": "Fury of the North",
     "initial": "S",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Sejuani/square",
     "adaptive": "AP",
     "base": {
       "ad": 66,
@@ -11850,7 +11735,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Senna",
     "title": "the Redeemer",
     "initial": "S",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Senna/square",
     "adaptive": "AD",
     "base": {
       "ad": 50,
@@ -11952,7 +11836,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Seraphine",
     "title": "the Starry-Eyed Songstress",
     "initial": "S",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Seraphine/square",
     "adaptive": "AP",
     "base": {
       "ad": 50,
@@ -12059,7 +11942,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Sett",
     "title": "the Boss",
     "initial": "S",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Sett/square",
     "adaptive": "AD",
     "base": {
       "ad": 60,
@@ -12162,7 +12044,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Shaco",
     "title": "the Demon Jester",
     "initial": "S",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Shaco/square",
     "adaptive": "AD",
     "base": {
       "ad": 63,
@@ -12270,7 +12151,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Shen",
     "title": "the Eye of Twilight",
     "initial": "S",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Shen/square",
     "adaptive": "AD",
     "base": {
       "ad": 64,
@@ -12380,7 +12260,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Shyvana",
     "title": "the Half-Dragon",
     "initial": "S",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Shyvana/square",
     "adaptive": "AD",
     "base": {
       "ad": 66,
@@ -12485,7 +12364,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Singed",
     "title": "the Mad Chemist",
     "initial": "S",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Singed/square",
     "adaptive": "AP",
     "base": {
       "ad": 63,
@@ -12584,7 +12462,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Sion",
     "title": "The Undead Juggernaut",
     "initial": "S",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Sion/square",
     "adaptive": "AD",
     "base": {
       "ad": 68,
@@ -12685,7 +12562,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Sivir",
     "title": "the Battle Mistress",
     "initial": "S",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Sivir/square",
     "adaptive": "AD",
     "base": {
       "ad": 60,
@@ -12782,7 +12658,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Skarner",
     "title": "the Primordial Sovereign",
     "initial": "S",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Skarner/square",
     "adaptive": "AD",
     "base": {
       "ad": 63,
@@ -12887,7 +12762,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Smolder",
     "title": "the Fiery Fledgling",
     "initial": "S",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Smolder/square",
     "adaptive": "AD",
     "base": {
       "ad": 60,
@@ -12995,7 +12869,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Sona",
     "title": "Maven of the Strings",
     "initial": "S",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Sona/square",
     "adaptive": "AP",
     "base": {
       "ad": 49,
@@ -13094,7 +12967,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Soraka",
     "title": "the Starchild",
     "initial": "S",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Soraka/square",
     "adaptive": "AP",
     "base": {
       "ad": 50,
@@ -13201,7 +13073,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Swain",
     "title": "the Noxian Grand General",
     "initial": "S",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Swain/square",
     "adaptive": "AP",
     "base": {
       "ad": 58,
@@ -13308,7 +13179,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Sylas",
     "title": "the Unshackled",
     "initial": "S",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Sylas/square",
     "adaptive": "AP",
     "base": {
       "ad": 61,
@@ -13405,7 +13275,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Syndra",
     "title": "the Dark Sovereign",
     "initial": "S",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Syndra/square",
     "adaptive": "AP",
     "base": {
       "ad": 54,
@@ -13512,7 +13381,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Tahm Kench",
     "title": "The River King",
     "initial": "T",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/TahmKench/square",
     "adaptive": "AP",
     "base": {
       "ad": 56,
@@ -13613,7 +13481,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Taliyah",
     "title": "the Stoneweaver",
     "initial": "T",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Taliyah/square",
     "adaptive": "AP",
     "base": {
       "ad": 58,
@@ -13710,7 +13577,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Talon",
     "title": "the Blade's Shadow",
     "initial": "T",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Talon/square",
     "adaptive": "AD",
     "base": {
       "ad": 68,
@@ -13811,7 +13677,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Taric",
     "title": "the Shield of Valoran",
     "initial": "T",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Taric/square",
     "adaptive": "AD",
     "base": {
       "ad": 55,
@@ -13906,7 +13771,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Teemo",
     "title": "the Swift Scout",
     "initial": "T",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Teemo/square",
     "adaptive": "AP",
     "base": {
       "ad": 54,
@@ -14007,7 +13871,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Thresh",
     "title": "the Chain Warden",
     "initial": "T",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Thresh/square",
     "adaptive": "AD",
     "base": {
       "ad": 56,
@@ -14112,7 +13975,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Tristana",
     "title": "the Yordle Gunner",
     "initial": "T",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Tristana/square",
     "adaptive": "AD",
     "base": {
       "ad": 60,
@@ -14215,7 +14077,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Trundle",
     "title": "the Troll King",
     "initial": "T",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Trundle/square",
     "adaptive": "AD",
     "base": {
       "ad": 68,
@@ -14304,7 +14165,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Tryndamere",
     "title": "the Barbarian King",
     "initial": "T",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Tryndamere/square",
     "adaptive": "AD",
     "base": {
       "ad": 66,
@@ -14406,7 +14266,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Twisted Fate",
     "title": "the Card Master",
     "initial": "T",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/TwistedFate/square",
     "adaptive": "AP",
     "base": {
       "ad": 52,
@@ -14512,7 +14371,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Twitch",
     "title": "the Plague Rat",
     "initial": "T",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Twitch/square",
     "adaptive": "AD",
     "base": {
       "ad": 59,
@@ -14603,7 +14461,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Udyr",
     "title": "the Spirit Walker",
     "initial": "U",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Udyr/square",
     "adaptive": "AD",
     "base": {
       "ad": 62,
@@ -14695,7 +14552,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Urgot",
     "title": "the Dreadnought",
     "initial": "U",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Urgot/square",
     "adaptive": "AD",
     "base": {
       "ad": 63,
@@ -14802,7 +14658,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Varus",
     "title": "the Arrow of Retribution",
     "initial": "V",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Varus/square",
     "adaptive": "AD",
     "base": {
       "ad": 59,
@@ -14909,7 +14764,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Vayne",
     "title": "the Night Hunter",
     "initial": "V",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Vayne/square",
     "adaptive": "AD",
     "base": {
       "ad": 60,
@@ -15005,7 +14859,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Veigar",
     "title": "the Tiny Master of Evil",
     "initial": "V",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Veigar/square",
     "adaptive": "AP",
     "base": {
       "ad": 52,
@@ -15106,7 +14959,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Vel'Koz",
     "title": "the Eye of the Void",
     "initial": "V",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Velkoz/square",
     "adaptive": "AP",
     "base": {
       "ad": 55,
@@ -15213,7 +15065,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Vex",
     "title": "the Gloomist",
     "initial": "V",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Vex/square",
     "adaptive": "AP",
     "base": {
       "ad": 54,
@@ -15320,7 +15171,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Vi",
     "title": "the Piltover Enforcer",
     "initial": "V",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Vi/square",
     "adaptive": "AD",
     "base": {
       "ad": 63,
@@ -15422,7 +15272,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Viego",
     "title": "The Ruined King",
     "initial": "V",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Viego/square",
     "adaptive": "AD",
     "base": {
       "ad": 57,
@@ -15513,7 +15362,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Viktor",
     "title": "the Herald of the Arcane",
     "initial": "V",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Viktor/square",
     "adaptive": "AP",
     "base": {
       "ad": 53,
@@ -15614,7 +15462,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Vladimir",
     "title": "the Crimson Reaper",
     "initial": "V",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Vladimir/square",
     "adaptive": "AP",
     "base": {
       "ad": 55,
@@ -15719,7 +15566,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Volibear",
     "title": "the Relentless Storm",
     "initial": "V",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Volibear/square",
     "adaptive": "AD",
     "base": {
       "ad": 60,
@@ -15827,7 +15673,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Warwick",
     "title": "the Uncaged Wrath of Zaun",
     "initial": "W",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Warwick/square",
     "adaptive": "AD",
     "base": {
       "ad": 60,
@@ -15919,7 +15764,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Wukong",
     "title": "the Monkey King",
     "initial": "W",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/MonkeyKing/square",
     "adaptive": "AD",
     "base": {
       "ad": 66,
@@ -16018,7 +15862,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Xayah",
     "title": "the Rebel",
     "initial": "X",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Xayah/square",
     "adaptive": "AD",
     "base": {
       "ad": 60,
@@ -16119,7 +15962,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Xerath",
     "title": "the Magus Ascendant",
     "initial": "X",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Xerath/square",
     "adaptive": "AP",
     "base": {
       "ad": 55,
@@ -16226,7 +16068,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Xin Zhao",
     "title": "the Seneschal of Demacia",
     "initial": "X",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/XinZhao/square",
     "adaptive": "AD",
     "base": {
       "ad": 63,
@@ -16334,7 +16175,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Yasuo",
     "title": "the Unforgiven",
     "initial": "Y",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Yasuo/square",
     "adaptive": "AD",
     "base": {
       "ad": 60,
@@ -16440,7 +16280,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Yone",
     "title": "the Unforgotten",
     "initial": "Y",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Yone/square",
     "adaptive": "AD",
     "base": {
       "ad": 60,
@@ -16539,7 +16378,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Yorick",
     "title": "Shepherd of Souls",
     "initial": "Y",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Yorick/square",
     "adaptive": "AD",
     "base": {
       "ad": 62,
@@ -16636,7 +16474,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Yuumi",
     "title": "the Magical Cat",
     "initial": "Y",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Yuumi/square",
     "adaptive": "AP",
     "base": {
       "ad": 49,
@@ -16738,7 +16575,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Zac",
     "title": "the Secret Weapon",
     "initial": "Z",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Zac/square",
     "adaptive": "AP",
     "base": {
       "ad": 60,
@@ -16843,7 +16679,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Zed",
     "title": "the Master of Shadows",
     "initial": "Z",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Zed/square",
     "adaptive": "AD",
     "base": {
       "ad": 63,
@@ -16946,7 +16781,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Zeri",
     "title": "The Spark of Zaun",
     "initial": "Z",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Zeri/square",
     "adaptive": "AD",
     "base": {
       "ad": 56,
@@ -17049,7 +16883,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Ziggs",
     "title": "the Hexplosives Expert",
     "initial": "Z",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Ziggs/square",
     "adaptive": "AP",
     "base": {
       "ad": 55,
@@ -17156,7 +16989,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Zilean",
     "title": "the Chronokeeper",
     "initial": "Z",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Zilean/square",
     "adaptive": "AP",
     "base": {
       "ad": 52,
@@ -17251,7 +17083,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Zoe",
     "title": "the Aspect of Twilight",
     "initial": "Z",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Zoe/square",
     "adaptive": "AP",
     "base": {
       "ad": 58,
@@ -17367,7 +17198,6 @@ export const GENERATED_CHAMPIONS: Record<string, Champion> = {
     "name": "Zyra",
     "title": "Rise of the Thorns",
     "initial": "Z",
-    "portrait": "https://cdn.communitydragon.org/latest/champion/Zyra/square",
     "adaptive": "AP",
     "base": {
       "ad": 53,

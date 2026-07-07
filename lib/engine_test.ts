@@ -112,3 +112,28 @@ Deno.test("roster : la keystone de chaque champion est modélisée", () => {
     assert(RUNES[c.keystone], `keystone inconnue pour ${c.id} : ${c.keystone}`);
   }
 });
+
+Deno.test("rangs manuels : un rang de Q plus élevé => plus de dégâts", () => {
+  const low = computeCombo(input("ahri", ["ludensecho"], { ranks: { Q: 1, W: 0, E: 0, R: 0 } })).total;
+  const high = computeCombo(input("ahri", ["ludensecho"], { ranks: { Q: 5, W: 0, E: 0, R: 0 } })).total;
+  assert(high > low, "monter le rang de Q doit augmenter les dégâts");
+});
+
+Deno.test("rangs manuels : un sort au rang 0 n'apparaît pas dans le combo", () => {
+  const res = computeCombo(input("ahri", ["ludensecho"], { ranks: { Q: 0, W: 0, E: 0, R: 0 } }));
+  assertEquals(res.lines.find((l) => l.key === "Q"), undefined);
+});
+
+Deno.test("keystone au choix : override change la rune appliquée", () => {
+  // Ahri par défaut = electro (ligne ✦). Forcer conqueror retire cette ligne.
+  const electro = computeCombo(input("ahri", ["ludensecho"], { keystoneId: "electro" }));
+  const conq = computeCombo(input("ahri", ["ludensecho"], { keystoneId: "conqueror" }));
+  assert(electro.lines.some((l) => l.key === "✦"), "electro doit poser une ligne de burst");
+  assert(!conq.lines.some((l) => l.key === "✦"), "conquérant ne pose pas de ligne electro");
+});
+
+Deno.test("champion manuel (Locke) est présent et se calcule", () => {
+  assert(CHAMPIONS.locke, "Locke doit être dans le roster");
+  const res = computeCombo(input("locke", ["ludensecho", "rabadonsdeathcap"]));
+  assert(res.total > 0, "le combo de Locke doit produire des dégâts");
+});

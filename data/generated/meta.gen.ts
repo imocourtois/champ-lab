@@ -9,5 +9,5 @@ export const DATA_META = {
   patch: "16.13.1",
   generatedAt: "2026-07-07",
   champions: 170,
-  items: 123,
+  items: 115,
 } as const;
