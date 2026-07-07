@@ -5,10 +5,6 @@ on:
     branches: [main]
   pull_request:
 
-permissions:
-  pages: write
-  id-token: write
-
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -27,20 +23,15 @@ jobs:
       - name: Tests
         run: deno test -A
 
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
+      # Vérifie que le build de production passe. Le déploiement lui-même est
+      # géré par l'intégration native Deno Deploy (branchée sur le repo GitHub),
+      # pas par ce workflow.
       - name: Build with Fresh
         run: deno task build
-      - name: Deploy to Deno Deploy
-        run: |
-          deno run -A https://deno.land/x/deploy/deployctl.ts \
-            --project=champ-lab \
-            --config=deno.json \
-            main.ts
-        env:
-          DENO_DEPLOY_TOKEN: ${{ secrets.DENO_DEPLOY_TOKEN }}

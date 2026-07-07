@@ -1,4 +1,5 @@
 import { define } from "@/utils.ts";
+import { DATA_META } from "@/data/generated/meta.gen.ts";
 
 export default define.page(function Methode() {
   return (
@@ -20,9 +21,18 @@ export default define.page(function Methode() {
               c'est <b>Meraki (lolstaticdata)</b>, parsé depuis le wiki et rafraîchi par patch.
             </p>
             <p>
-              ⚠ Dans cette version, les valeurs sont <b>illustratives</b>{" "}
-              et écrites à la main pour deux champions. Le pipeline Meraki n'est pas encore branché : c'est le
-              premier gros chantier communautaire.
+              Le pipeline est <b>branché</b> : <code>deno task data</code>{" "}
+              récupère tout le roster depuis Meraki + Data Dragon et génère{" "}
+              <code>data/generated/</code>. Roster actuel : <b>{DATA_META.champions} champions</b> et{" "}
+              <b>{DATA_META.items} objets</b>, patch <b>{DATA_META.patch}</b> (généré le{" "}
+              {DATA_META.generatedAt}).
+            </p>
+            <p>
+              ⚠ Le pipeline n'extrait que ce que le moteur sait modéliser : stats de base, ratios AP / AD / AD
+              bonus, stats plates d'objets. Les mécaniques vraiment complexes (dégâts en % des PV, passifs
+              conditionnels, cumuls spécifiques) ne sont <b>pas inventées</b>{" "}
+              — elles restent à modéliser à la main dans <code>lib/engine.ts</code> et via{" "}
+              <code>data/overrides.ts</code>, champion par champion.
             </p>
           </div>
         </section>
@@ -40,8 +50,10 @@ export default define.page(function Methode() {
               sous forme d'objets typés.
             </p>
             <p>
-              Ajouter un champion = ajouter un objet dans{" "}
-              <code>data/champions.ts</code>. Les interactions vraiment complexes (passifs d'objets, effets de
+              Les données brutes sont générées (<code>data/generated/</code>) ; on ne les édite pas à la main.
+              Affiner un champion = ajuster <code>data/overrides.ts</code>{" "}
+              (étagère d'objets, rune, ordre de compétences, correction de ratio) puis relancer{" "}
+              <code>deno task data</code>. Les interactions vraiment complexes (passifs d'objets, effets de
               runes) se modélisent au cas par cas dans le moteur. Guide&nbsp;:{" "}
               <code>docs/adding-a-champion.md</code>.
             </p>

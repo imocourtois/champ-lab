@@ -32,7 +32,7 @@ const tyTok = (t: string) => (t === "physical" ? "phys" : t);
 function Pips({ rank, max }: { rank: number; max: number }) {
   return (
     <div class="pips">
-      {Array.from({ length: max }, (_, i) => <span class={`pip${i < rank ? " on" : ""}`}></span>)}
+      {Array.from({ length: max }, (_, i) => <span key={i} class={`pip${i < rank ? " on" : ""}`}></span>)}
     </div>
   );
 }
@@ -122,6 +122,16 @@ export default function ChampLab({ champion }: { champion: Champion }) {
               <div class="portrait">
                 <div class="pface">
                   <span class="init">{champion.initial}</span>
+                  {champion.portrait && (
+                    <img
+                      class="pimg"
+                      src={champion.portrait}
+                      alt={champion.name}
+                      loading="lazy"
+                      width={74}
+                      height={74}
+                    />
+                  )}
                 </div>
                 <div class="pmeta">
                   <div class="name">{champion.name}</div>
@@ -190,6 +200,7 @@ export default function ChampLab({ champion }: { champion: Champion }) {
                         </div>
                       </div>
                       <button
+                        type="button"
                         class="abinc"
                         aria-label={`inclure ${key} dans le combo`}
                         aria-pressed={on}
@@ -210,6 +221,7 @@ export default function ChampLab({ champion }: { champion: Champion }) {
           <div class="phead">
             <span class="tag">BUILD</span>
             <button
+              type="button"
               class="impacttoggle"
               aria-pressed={impact}
               onClick={() => setImpact(!impact)}
@@ -224,7 +236,13 @@ export default function ChampLab({ champion }: { champion: Champion }) {
                 const id = itemIds[i];
                 if (id) {
                   return (
-                    <button class="slot full" title={ITEMS[id].name} onClick={() => removeItem(i)}>
+                    <button
+                      type="button"
+                      key={i}
+                      class="slot full"
+                      title={ITEMS[id].name}
+                      onClick={() => removeItem(i)}
+                    >
                       <span class="rm">✕</span>
                       <span class="code">{ITEMS[id].short}</span>
                       <span class="glyph">{itemStatLine(id).split(" · ")[0]}</span>
@@ -232,7 +250,7 @@ export default function ChampLab({ champion }: { champion: Champion }) {
                   );
                 }
                 return (
-                  <div class="slot">
+                  <div key={i} class="slot">
                     <span class="plus">+</span>
                   </div>
                 );
@@ -258,6 +276,8 @@ export default function ChampLab({ champion }: { champion: Champion }) {
                 }
                 return (
                   <button
+                    type="button"
+                    key={id}
                     class={`chip${equipped ? " equipped" : ""}`}
                     disabled={equipped}
                     onClick={() => addItem(id)}
@@ -272,6 +292,7 @@ export default function ChampLab({ champion }: { champion: Champion }) {
             </div>
 
             <button
+              type="button"
               class={`rune${runeOn ? "" : " off"}${champion.adaptive === "AD" ? " ad" : ""}`}
               aria-pressed={runeOn}
               onClick={() => {
@@ -300,7 +321,13 @@ export default function ChampLab({ champion }: { champion: Champion }) {
           <div class="pbody">
             <div class="presets">
               {Object.keys(PRESETS).map((k) => (
-                <button onClick={() => applyPreset(k)}>{k.toUpperCase()}</button>
+                <button
+                  type="button"
+                  key={k}
+                  onClick={() => applyPreset(k)}
+                >
+                  {k.toUpperCase()}
+                </button>
               ))}
             </div>
             <div class="field">
@@ -402,13 +429,13 @@ export default function ChampLab({ champion }: { champion: Champion }) {
               <div class="tybar">
                 {(["physical", "magic", "true"] as const).map((t) =>
                   byType[t] > 0
-                    ? <i class={`b-${tyTok(t)}`} style={`width:${(byType[t] / totalDmg) * 100}%`}></i>
+                    ? <i key={t} class={`b-${tyTok(t)}`} style={`width:${(byType[t] / totalDmg) * 100}%`}></i>
                     : null
                 )}
               </div>
               <div class="tylegend" style="margin-top:8px">
                 {(["physical", "magic", "true"] as const).filter((t) => byType[t] > 0).map((t) => (
-                  <span>
+                  <span key={t}>
                     <span class={`dot b-${tyTok(t)}`}></span>
                     {tyLabel(t)} {fr(byType[t])}
                   </span>

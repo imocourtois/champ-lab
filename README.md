@@ -19,12 +19,14 @@ précis, contre une cible précise.
 
 ## ⚠ Statut
 
-Version **0.1 — preuve de concept**. Les données sont **illustratives** et écrites à la main pour **deux
-champions** (Ahri, Darius). Le pipeline de données réel (Meraki) n'est pas encore branché. Voir
-[Sources de données](#sources-de-données).
+Version **0.2**. Le **pipeline de données est branché** : tout le roster (≈ 170 champions + objets) est
+**généré** depuis **Meraki (lolstaticdata) + Data Dragon**, versionné par patch — voir
+[Sources de données](#sources-de-données). Portraits réels via Community Dragon.
 
-Autrement dit : l'architecture et l'app tournent ; la donnée exacte de chaque champion, c'est le travail
-continu de la communauté.
+Le pipeline n'extrait que ce que le moteur sait modéliser (stats de base, ratios AP / AD / AD bonus, stats
+plates d'objets). Les mécaniques vraiment complexes (dégâts en % des PV, passifs conditionnels, cumuls) ne
+sont **pas inventées** : elles restent à modéliser à la main dans `lib/engine.ts` et affinées via
+`data/overrides.ts`, champion par champion — c'est le travail continu de la communauté.
 
 ---
 
@@ -35,10 +37,14 @@ Prérequis : [Deno](https://deno.com) **2.x**.
 ```bash
 deno task dev      # serveur de dev + rechargement à chaud
 deno task check    # deno fmt --check && deno lint && deno check
-deno task test     # tests du moteur
+deno task test     # tests du moteur (+ invariants sur tout le roster)
 deno task build    # build de production (génère _fresh/)
 deno task start    # lance le build de production
+deno task data     # (re)génère data/generated/ depuis Meraki + Data Dragon
 ```
+
+Le roster généré (`data/generated/`) est **versionné dans le repo** : l'app tourne sans lancer
+`deno task data`. On ne relance le pipeline que pour rafraîchir un patch.
 
 Puis ouvre l'URL affichée dans le terminal.
 
@@ -59,9 +65,16 @@ Puis ouvre l'URL affichée dans le terminal.
 champ-lab/
 ├── data/                 # DONNÉES (typées, contribuables)
 │   ├── types.ts          #   interfaces du domaine
-│   ├── champions.ts      #   >>> ajouter un champion = ajouter un objet ici
-│   ├── items.ts          #   objets + stats
-│   └── runes.ts          #   runes keystone
+│   ├── generated/        #   >>> GÉNÉRÉ par `deno task data` (ne pas éditer)
+│   │   ├── champions.gen.ts
+│   │   ├── items.gen.ts
+│   │   └── meta.gen.ts   #     patch + compteurs
+│   ├── overrides.ts      #   >>> réglages à la main : étagères, runes, passifs
+│   ├── champions.ts      #   ré-exporte le généré
+│   ├── items.ts          #   ré-exporte le généré + itemStatLine
+│   └── runes.ts          #   runes keystone (kinds modélisés dans le moteur)
+├── scripts/
+│   └── fetch-data.ts     # PIPELINE Meraki + Data Dragon → data/generated/
 ├── lib/
 │   ├── engine.ts         # MOTEUR pur & typé (aucune donnée en dur)
 │   └── engine_test.ts    #   tests d'invariants
@@ -97,10 +110,11 @@ effectif  = dégâts * 100 / (100 + résistance après pénétration)   // "vrai
 Les pénétrations en % s'empilent multiplicativement. La fonction signature est `itemImpact()` : la différence
 de dégâts totaux si on ajoutait un objet au build — c'est le **mode impact**.
 
-## Ajouter un champion
+## Ajouter / affiner un champion
 
-C'est le geste central du projet. Résumé : copie un objet existant dans `data/champions.ts`, remplis les stats
-et coefficients (depuis Meraki), lance `deno task test`. Guide détaillé :
+Le roster de base est généré. Le geste de contribution est désormais l'**affinage** : un champion dont une
+mécanique de kit n'est pas couverte par le modèle générique se corrige dans `data/overrides.ts` (étagère
+d'objets, rune keystone, ordre de compétences, correction de ratio) puis `deno task data`. Guide détaillé :
 **[docs/adding-a-champion.md](docs/adding-a-champion.md)**.
 
 Les interactions vraiment complexes (passifs d'objets, effets de runes, particularités de kit) se modélisent
@@ -109,13 +123,22 @@ maintenance du patch se répartit.
 
 ## Sources de données
 
-Data Dragon (Riot) est fiable pour les stats plates mais peu exploitable pour les coefficients de sorts. La
-source de référence est **[Meraki / lolstaticdata](https://github.com/meraki-analytics/lolstaticdata)**, à
-rafraîchir par patch.
+Le pipeline (`scripts/fetch-data.ts`, lancé par `deno task data`) combine deux sources :
 
-**Honnêteté :** les valeurs de ce repo sont saisies à la main et illustratives. Brancher un vrai pipeline
-Meraki (fichiers versionnés par patch, cachés agressivement) est le premier gros chantier — idéal pour une
-première contribution.
+- **[Data Dragon](https://developer.riotgames.com/docs/lol#data-dragon)** (Riot) — résolution du patch et
+  liste des champions ; portraits carrés via **Community Dragon**.
+- **[Meraki / lolstaticdata](https://github.com/meraki-analytics/lolstaticdata)** — stats de base, ratios de
+  sorts (AP / AD / AD bonus) et stats plates d'objets, parsés du wiki et versionnés par patch.
+
+**Honnêteté :** le pipeline n'extrait que ce que le moteur sait déjà modéliser. Ce que Meraki encode en texte
+(passifs conditionnels, dégâts en % PV, cumuls) n'est **pas deviné** : ces cas restent à coder à la main dans
+`lib/engine.ts` et à réinjecter via `data/overrides.ts`. C'est un travail continu, idéal pour contribuer.
+
+Régénérer un patch précis :
+
+```bash
+deno task data -- 15.24.1
+```
 
 ## Sobriété
 

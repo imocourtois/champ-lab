@@ -1,0 +1,485 @@
+/**
+ * PIPELINE DE DONNÉES — Meraki (lolstaticdata) + Data Dragon → data/generated/
+ *
+ * C'est LE chantier annoncé dans le README : brancher un vrai pipeline versionné
+ * par patch au lieu de saisir les champions à la main.
+ *
+ *   deno task data              # patch courant (Data Dragon "latest")
+ *   deno task data -- 15.24.1   # patch figé
+ *
+ * Ce que fait le script :
+ *   1. résout le patch (Data Dragon /api/versions.json) ;
+ *   2. récupère TOUS les champions + objets depuis Meraki ;
+ *   3. les projette sur les types du domaine (data/types.ts) — on n'extrait que
+ *      ce que le moteur sait modéliser (stats plates, ratios AP / AD / bonus AD) ;
+ *   4. fusionne des "overrides" écrits à la main (data/overrides.ts) pour les
+ *      passifs complexes (Rabadon %AP, Fendoir %pén.), les étagères d'objets
+ *      recommandés et la rune par défaut de chaque champion ;
+ *   5. écrit data/generated/champions.gen.ts, items.gen.ts, meta.gen.ts.
+ *
+ * Honnêteté : les mécaniques non-plates (dégâts % PV, passifs conditionnels…)
+ * ne sont PAS inventées. Elles restent à modéliser au cas par cas dans
+ * lib/engine.ts, exactement comme avant. Le pipeline remplit le générique.
+ */
+
+import type {
+  Ability,
+  AbilityKey,
+  AbilityRatios,
+  Adaptive,
+  Champion,
+  ChampionBaseStats,
+  DamageType,
+  Item,
+  ItemStats,
+} from "../data/types.ts";
+import {
+  CHAMPION_OVERRIDES,
+  DEFAULT_AD_SHELF,
+  DEFAULT_AP_SHELF,
+  ITEM_OVERRIDES,
+  ITEM_WHITELIST,
+} from "../data/overrides.ts";
+
+const MERAKI = "https://cdn.merakianalytics.com/riot/lol/resources/latest/en-US";
+const DDRAGON = "https://ddragon.leagueoflegends.com";
+const CDRAGON_SQUARE = (id: string) => `https://cdn.communitydragon.org/latest/champion/${id}/square`;
+
+const OUT_DIR = new URL("../data/generated/", import.meta.url);
+
+// ---------------------------------------------------------------------------
+// Types bruts (partiels) des réponses Meraki — juste ce qu'on consomme.
+// ---------------------------------------------------------------------------
+
+interface MStat {
+  flat: number;
+  perLevel: number;
+  percent?: number;
+}
+interface MChampionStats {
+  attackDamage: MStat;
+  health: MStat;
+  armor: MStat;
+  magicResistance: MStat;
+}
+interface MModifier {
+  units: string[];
+  values: number[];
+}
+interface MLeveling {
+  attribute: string;
+  modifiers: MModifier[];
+}
+interface MEffect {
+  description?: string;
+  leveling?: MLeveling[];
+}
+interface MAbility {
+  name: string;
+  damageType?: string;
+  effects: MEffect[];
+}
+interface MChampion {
+  /** clé numérique Riot (ex. 103) — PAS le slug */
+  id: number;
+  /** id string Data Dragon (ex. "Ahri", "LeeSin") — sert au slug et au portrait */
+  key: string;
+  name: string;
+  title: string;
+  adaptiveType?: string;
+  attackType?: string;
+  stats: MChampionStats;
+  abilities: Record<string, MAbility[]>;
+}
+
+interface MItemStat {
+  flat?: number;
+  percent?: number;
+}
+interface MItem {
+  name: string;
+  rank?: string[];
+  removed?: boolean;
+  requiredChampion?: string;
+  shop?: { purchasable?: boolean };
+  stats?: Record<string, MItemStat>;
+}
+
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
+
+async function fetchJson<T>(url: string): Promise<T> {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`${res.status} ${res.statusText} — ${url}`);
+  return res.json() as Promise<T>;
+}
+
+/** slug stable et sûr pour une URL : "Lee Sin" → "leesin", "Kai'Sa" → "kaisa". */
+function slugify(id: string): string {
+  return id.toLowerCase().replace(/[^a-z0-9]/g, "");
+}
+
+const round = (n: number, p = 2) => Math.round(n * 10 ** p) / 10 ** p;
+
+/** Type de dégâts d'un sort, déduit du champ Meraki (fallback : magique/util). */
+function damageType(m: string | undefined, hasDamage: boolean): DamageType {
+  if (!hasDamage) return "util";
+  switch (m) {
+    case "MAGIC_DAMAGE":
+      return "magic";
+    case "PHYSICAL_DAMAGE":
+      return "physical";
+    case "TRUE_DAMAGE":
+      return "true";
+    // MIXED_DAMAGE / absent : on retient le canal principal côté ratios ; par
+    // défaut magique (la plupart des sorts mixtes sont à dominante AP).
+    default:
+      return "magic";
+  }
+}
+
+/** Convertit une unité Meraki en clé de ratio du domaine (ou null si non modélisé). */
+function ratioKeyFromUnit(unit: string): keyof AbilityRatios | null {
+  switch (unit.trim()) {
+    case "% AP":
+      return "ap";
+    case "% AD":
+      return "totalAd";
+    case "% bonus AD":
+      return "bonusAd";
+    default:
+      return null; // % PV cible, létalité conditionnelle, etc. → non modélisé
+  }
+}
+
+/**
+ * Choisit la ligne de dégâts "principale" d'un sort parmi les entrées de
+ * leveling de Meraki. Heuristique : on privilégie un attribut dont le nom
+ * contient "Damage", en écartant les "Total"/"Maximum"/"Reduced"/"Minimum"/
+ * "Per Stack" qui sont des variantes/plafonds. À défaut, la première.
+ */
+function pickDamageLeveling(ability: MAbility): MLeveling | null {
+  const levelings: MLeveling[] = [];
+  for (const eff of ability.effects) {
+    for (const lv of eff.leveling ?? []) levelings.push(lv);
+  }
+  if (levelings.length === 0) return null;
+
+  const isDamage = (a: string) => /damage/i.test(a);
+  const isVariant = (a: string) =>
+    /(total|maximum|minimum|reduced|per stack|monster|per second|bonus)/i.test(a);
+
+  const primary = levelings.find((l) => isDamage(l.attribute) && !isVariant(l.attribute));
+  if (primary) return primary;
+  const anyDamage = levelings.find((l) => isDamage(l.attribute));
+  return anyDamage ?? levelings[0];
+}
+
+/** Extrait base[] par rang + ratios depuis la ligne de dégâts choisie. */
+function extractAbilityDamage(ability: MAbility): { base: number[]; ratios: AbilityRatios } | null {
+  const lv = pickDamageLeveling(ability);
+  if (!lv) return null;
+
+  let base: number[] = [];
+  const ratios: AbilityRatios = {};
+
+  for (const mod of lv.modifiers) {
+    const units = mod.units;
+    // Un modifier "flat" a ses unités vides ("").
+    if (units.every((u) => u.trim() === "")) {
+      if (base.length === 0) base = mod.values.map((v) => round(v));
+      continue;
+    }
+    // Sinon, unité de ratio homogène : on prend le rang 1 (les ratios varient
+    // rarement par rang ; quand ils le font, on retient le premier — simple et
+    // relisible, à raffiner en override si besoin).
+    const key = ratioKeyFromUnit(units[0]);
+    if (key && mod.values.length) ratios[key] = round(mod.values[0] / 100, 3);
+  }
+
+  if (base.length === 0 && Object.keys(ratios).length === 0) return null;
+  if (base.length === 0) base = [0];
+  return { base, ratios };
+}
+
+// ---------------------------------------------------------------------------
+// Mapping champion
+// ---------------------------------------------------------------------------
+
+const ABILITY_KEYS: AbilityKey[] = ["Q", "W", "E", "R"];
+
+function mapChampion(m: MChampion): Champion {
+  const id = slugify(m.key);
+  const ov = CHAMPION_OVERRIDES[id] ?? {};
+
+  const base: ChampionBaseStats = {
+    ad: round(m.stats.attackDamage.flat),
+    adPerLevel: round(m.stats.attackDamage.perLevel),
+    hp: round(m.stats.health.flat),
+    hpPerLevel: round(m.stats.health.perLevel),
+    armor: round(m.stats.armor.flat),
+    armorPerLevel: round(m.stats.armor.perLevel),
+    mr: round(m.stats.magicResistance.flat),
+    mrPerLevel: round(m.stats.magicResistance.perLevel),
+  };
+
+  const adaptive: Adaptive = ov.adaptive ?? (m.adaptiveType === "PHYSICAL_DAMAGE" ? "AD" : "AP");
+
+  const abilities = {} as Record<AbilityKey, Ability>;
+  for (const key of ABILITY_KEYS) {
+    const arr = m.abilities[key];
+    const ma = arr?.[0];
+    if (!ma) {
+      abilities[key] = { name: key, type: "util", maxRank: key === "R" ? 3 : 5, base: [0], ratios: {} };
+      continue;
+    }
+    const dmg = extractAbilityDamage(ma);
+    const type = damageType(ma.damageType, !!dmg);
+    const maxRank = key === "R" ? 3 : 5;
+    abilities[key] = {
+      name: ma.name,
+      type,
+      maxRank,
+      base: dmg?.base ?? [0],
+      ratios: dmg?.ratios ?? {},
+    };
+  }
+
+  const defaultShelf = adaptive === "AD" ? DEFAULT_AD_SHELF : DEFAULT_AP_SHELF;
+  const defaultKeystone = adaptive === "AD" ? "conqueror" : "electro";
+
+  return {
+    id,
+    name: m.name,
+    title: m.title,
+    initial: m.name[0]?.toUpperCase() ?? "?",
+    portrait: CDRAGON_SQUARE(m.key),
+    adaptive,
+    hasBleed: ov.hasBleed,
+    base,
+    // Ordre de compétences non fourni par Meraki (dépend du build). On applique
+    // un ordre par défaut raisonnable : max Q > W > E, ult aux niv 6/11/16 ;
+    // un override par champion peut l'affiner.
+    skillOrder: ov.skillOrder ?? defaultSkillOrder(),
+    abilities: applyAbilityOverrides(id, abilities),
+    shelf: ov.shelf ?? defaultShelf,
+    keystone: ov.keystone ?? defaultKeystone,
+  };
+}
+
+/** Ordre par défaut : max Q, puis W, puis E, ult 6/11/16. */
+function defaultSkillOrder(): AbilityKey[] {
+  return ["Q", "W", "E", "Q", "Q", "R", "Q", "E", "Q", "E", "R", "E", "E", "W", "W", "R", "W", "W"];
+}
+
+/** Applique les overrides d'abilities (type/ratios corrigés à la main) si présents. */
+function applyAbilityOverrides(id: string, abilities: Record<AbilityKey, Ability>) {
+  const ov = CHAMPION_OVERRIDES[id]?.abilities;
+  if (!ov) return abilities;
+  for (const key of ABILITY_KEYS) {
+    if (ov[key]) abilities[key] = { ...abilities[key], ...ov[key] };
+  }
+  return abilities;
+}
+
+// ---------------------------------------------------------------------------
+// Mapping objet
+// ---------------------------------------------------------------------------
+
+function mapItemStats(m: MItem): ItemStats {
+  const s = m.stats ?? {};
+  const stats: ItemStats = {};
+  const flat = (k: string) => s[k]?.flat ?? 0;
+  const pct = (k: string) => s[k]?.percent ?? 0;
+
+  if (flat("attackDamage")) stats.ad = round(flat("attackDamage"));
+  if (flat("abilityPower")) stats.ap = round(flat("abilityPower"));
+  if (flat("health")) stats.hp = round(flat("health"));
+  if (flat("armor")) stats.armor = round(flat("armor"));
+  if (flat("abilityHaste")) stats.abilityHaste = round(flat("abilityHaste"));
+  if (flat("magicPenetration")) stats.magicPenFlat = round(flat("magicPenetration"));
+  if (pct("magicPenetration")) stats.magicPenPercent = round(pct("magicPenetration") / 100, 3);
+  if (pct("armorPenetration")) stats.armorPenPercent = round(pct("armorPenetration") / 100, 3);
+  if (flat("lethality")) stats.lethality = round(flat("lethality"));
+  return stats;
+}
+
+/** Libellé court : reprend l'override s'il existe, sinon dérive du nom. */
+function itemShort(name: string, ov?: { short?: string }): string {
+  if (ov?.short) return ov.short;
+  const cleaned = name.replace(/['â€™]/g, "").toUpperCase();
+  const first = cleaned.split(/\s+/)[0];
+  return (first.length >= 4 ? first : cleaned.replace(/\s+/g, "")).slice(0, 8);
+}
+
+// ---------------------------------------------------------------------------
+// Rendu des fichiers .gen.ts
+// ---------------------------------------------------------------------------
+
+function header(patch: string): string {
+  return `// ⚠ FICHIER GÉNÉRÉ — ne pas éditer à la main.
+// Source : Meraki (lolstaticdata) + Data Dragon.
+// Régénérer : deno task data
+// Patch de référence : ${patch}
+// Généré le : ${new Date().toISOString().slice(0, 10)}
+`;
+}
+
+function renderChampions(champs: Champion[], patch: string): string {
+  const body = champs
+    .map((c) => `  ${JSON.stringify(c.id)}: ${JSON.stringify(c, null, 2).replace(/\n/g, "\n  ")},`)
+    .join("\n");
+  return `${header(patch)}
+import type { Champion } from "../types.ts";
+
+export const GENERATED_CHAMPIONS: Record<string, Champion> = {
+${body}
+};
+`;
+}
+
+function renderItems(items: Item[], patch: string): string {
+  const body = items
+    .map((it) => `  ${JSON.stringify(it.id)}: ${JSON.stringify(it, null, 2).replace(/\n/g, "\n  ")},`)
+    .join("\n");
+  return `${header(patch)}
+import type { Item } from "../types.ts";
+
+export const GENERATED_ITEMS: Record<string, Item> = {
+${body}
+};
+`;
+}
+
+function renderMeta(patch: string, counts: { champions: number; items: number }): string {
+  return `${header(patch)}
+/** Métadonnées de génération (affichées dans /methode). */
+export const DATA_META = {
+  patch: ${JSON.stringify(patch)},
+  generatedAt: ${JSON.stringify(new Date().toISOString().slice(0, 10))},
+  champions: ${counts.champions},
+  items: ${counts.items},
+} as const;
+`;
+}
+
+// ---------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------
+
+async function main() {
+  const arg = Deno.args[0];
+  const versions = await fetchJson<string[]>(`${DDRAGON}/api/versions.json`);
+  const patch = arg ?? versions[0];
+  console.log(`▶ Patch de référence : ${patch}`);
+
+  // --- Champions ---
+  console.log("▶ Récupération de la liste des champions (Data Dragon)…");
+  const dd = await fetchJson<{ data: Record<string, { id: string }> }>(
+    `${DDRAGON}/cdn/${patch}/data/en_US/champion.json`,
+  );
+  const championIds = Object.values(dd.data).map((c) => c.id).sort();
+  console.log(`  ${championIds.length} champions à traiter.`);
+
+  const champions: Champion[] = [];
+  let done = 0;
+  // Petites vagues pour ne pas marteler le CDN.
+  const BATCH = 12;
+  for (let i = 0; i < championIds.length; i += BATCH) {
+    const slice = championIds.slice(i, i + BATCH);
+    const results = await Promise.allSettled(
+      slice.map((id) => fetchJson<MChampion>(`${MERAKI}/champions/${id}.json`)),
+    );
+    for (let j = 0; j < results.length; j++) {
+      const r = results[j];
+      if (r.status === "fulfilled") {
+        try {
+          champions.push(mapChampion(r.value));
+        } catch (e) {
+          console.warn(`  ⚠ mapping échoué pour ${slice[j]} : ${(e as Error).message}`);
+        }
+      } else {
+        console.warn(`  ⚠ fetch échoué pour ${slice[j]} : ${r.reason}`);
+      }
+    }
+    done += slice.length;
+    console.log(`  …${done}/${championIds.length}`);
+  }
+  champions.sort((a, b) => a.name.localeCompare(b.name, "fr"));
+
+  // --- Objets ---
+  console.log("▶ Récupération des objets (Meraki)…");
+  const rawItems = await fetchJson<Record<string, MItem>>(`${MERAKI}/items.json`);
+  const items: Item[] = [];
+  const wanted = new Set(ITEM_WHITELIST);
+  for (const m of Object.values(rawItems)) {
+    if (m.removed || m.requiredChampion) continue;
+    if (!m.shop?.purchasable) continue;
+    const rank = m.rank ?? [];
+    const isLegendaryOrBoots = rank.includes("LEGENDARY") || rank.includes("BOOTS");
+    const id = slugify(m.name);
+    // On garde : les légendaires/bottes portant une stat pertinente, plus la
+    // whitelist explicite (permet d'inclure un objet précis sans stat plate).
+    if (!isLegendaryOrBoots && !wanted.has(id)) continue;
+    const stats = mapItemStats(m);
+    const ov = ITEM_OVERRIDES[id];
+    const merged: ItemStats = { ...stats, ...(ov?.stats ?? {}) };
+    // Un objet sans aucune stat modélisée n'apporte rien au moteur : on l'écarte
+    // (sauf whitelist explicite).
+    if (Object.keys(merged).length === 0 && !wanted.has(id)) continue;
+    items.push({
+      id,
+      name: ov?.name ?? m.name,
+      short: itemShort(m.name, ov),
+      stats: merged,
+    });
+  }
+  items.sort((a, b) => a.name.localeCompare(b.name, "fr"));
+
+  // --- Intégrité : une étagère ne doit référencer que des objets existants.
+  // On filtre les ids inconnus (plutôt que planter l'UI qui fait ITEMS[id].name)
+  // et on complète avec l'étagère par défaut si elle devient trop courte.
+  const itemIds = new Set(items.map((it) => it.id));
+  let dropped = 0;
+  for (const c of champions) {
+    const clean = c.shelf.filter((id) => itemIds.has(id));
+    dropped += c.shelf.length - clean.length;
+    const fallback = c.adaptive === "AD" ? DEFAULT_AD_SHELF : DEFAULT_AP_SHELF;
+    for (const id of fallback) {
+      if (clean.length >= 6) break;
+      if (itemIds.has(id) && !clean.includes(id)) clean.push(id);
+    }
+    c.shelf = clean;
+  }
+  if (dropped) console.log(`  ⚠ ${dropped} référence(s) d'étagère inconnue(s) écartée(s).`);
+
+  // --- Écriture ---
+  await Deno.mkdir(OUT_DIR, { recursive: true });
+  await Deno.writeTextFile(new URL("champions.gen.ts", OUT_DIR), renderChampions(champions, patch));
+  await Deno.writeTextFile(new URL("items.gen.ts", OUT_DIR), renderItems(items, patch));
+  await Deno.writeTextFile(
+    new URL("meta.gen.ts", OUT_DIR),
+    renderMeta(patch, { champions: champions.length, items: items.length }),
+  );
+
+  // Reformate les fichiers générés pour qu'ils passent `deno fmt --check`
+  // (JSON.stringify n'ajoute pas les virgules finales attendues par Deno).
+  console.log("▶ Formatage des fichiers générés (deno fmt)…");
+  const fmt = new Deno.Command("deno", {
+    args: ["fmt", "data/generated/"],
+    stdout: "null",
+    stderr: "inherit",
+  });
+  const { success } = await fmt.output();
+  if (!success) console.warn("  ⚠ `deno fmt` a échoué — lance-le à la main.");
+
+  console.log(
+    `✔ Généré : ${champions.length} champions, ${items.length} objets → data/generated/`,
+  );
+  console.log("  Lance ensuite : deno task check && deno task test");
+}
+
+if (import.meta.main) {
+  await main();
+}

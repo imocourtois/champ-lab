@@ -7,7 +7,8 @@
     "build": "deno run -A dev.ts build",
     "start": "deno run -A main.ts",
     "check": "deno fmt --check && deno lint && deno check",
-    "test": "deno test -A"
+    "test": "deno test -A",
+    "data": "deno run -A scripts/fetch-data.ts"
   },
   "lint": {
     "rules": { "tags": ["fresh", "recommended"] }

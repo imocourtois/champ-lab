@@ -359,6 +359,16 @@ button {
   position: relative;
   text-shadow: 0 0 10px rgba(182, 242, 74, 0.4);
 }
+/* Portrait réel (icône carrée du champion). L'initiale reste en fallback dessous. */
+.pface .pimg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  filter: saturate(0.85) contrast(1.05);
+}
 .pface.small .init {
   font-size: 20px;
 }
@@ -937,7 +947,12 @@ input[type=range].en::-moz-range-thumb {
   display: flex;
   gap: 6px;
   margin-bottom: 14px;
-  flex-wrap: wrap;
+  /* Roster complet (170+) : bande défilable horizontalement plutôt qu'un mur de
+     boutons. Le picker principal reste la page /champions. */
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scrollbar-width: thin;
 }
 .chswitch-btn {
   border: 1px solid var(--line);
@@ -946,6 +961,17 @@ input[type=range].en::-moz-range-thumb {
   letter-spacing: 0.08em;
   color: var(--dim2);
   transition: 0.12s;
+  flex: none;
+  white-space: nowrap;
+}
+.chswitch-all {
+  border: 1px solid var(--green);
+  color: var(--green);
+  padding: 7px 14px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  flex: none;
+  white-space: nowrap;
 }
 .chswitch-btn:hover {
   border-color: var(--line2);
