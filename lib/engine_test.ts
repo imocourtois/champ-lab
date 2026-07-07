@@ -68,20 +68,47 @@ Deno.test("mitigation: l'armure réduit les dégâts physiques", () => {
 });
 
 Deno.test("plus d'objets => plus de dégâts", () => {
-  const few = computeCombo(input("ahri", ["sorc", "luden"])).total;
-  const many = computeCombo(input("ahri", ["sorc", "luden", "rab", "shadow"])).total;
+  const few = computeCombo(input("ahri", ["sorcerersshoes", "ludensecho"])).total;
+  const many =
+    computeCombo(input("ahri", ["sorcerersshoes", "ludensecho", "rabadonsdeathcap", "shadowflame"])).total;
   assert(many > few, "un build plus fourni doit taper plus fort");
 });
 
 Deno.test("Darius : l'ultime est du vrai dégât et pose un seuil d'exécution", () => {
-  const res = computeCombo(input("darius", ["ion", "stride", "cleaver"]));
+  const res = computeCombo(input("darius", ["ionianbootsoflucidity", "stridebreaker", "blackcleaver"]));
   assert(res.execHP > 0, "execHP doit être renseigné pour Darius");
   const rLine = res.lines.find((l) => l.key === "R");
   assertEquals(rLine?.type, "true");
 });
 
 Deno.test("couper la rune réduit (ou n'augmente pas) le combo", () => {
-  const withRune = computeCombo(input("ahri", ["luden"], { runeOn: true })).total;
-  const without = computeCombo(input("ahri", ["luden"], { runeOn: false })).total;
+  const withRune = computeCombo(input("ahri", ["ludensecho"], { runeOn: true })).total;
+  const without = computeCombo(input("ahri", ["ludensecho"], { runeOn: false })).total;
   assert(withRune >= without);
+});
+
+// --- Invariants sur TOUT le roster généré (filet de sécurité du pipeline). ---
+
+Deno.test("roster : chaque champion se calcule sans planter, à tous les niveaux", () => {
+  for (const id of Object.keys(CHAMPIONS)) {
+    for (const level of [1, 6, 11, 18]) {
+      const res = computeCombo(input(id, CHAMPIONS[id].shelf.slice(0, 3), { level }));
+      assert(Number.isFinite(res.total), `total non fini pour ${id} niv ${level}`);
+      assert(res.total >= 0, `total négatif pour ${id} niv ${level}`);
+    }
+  }
+});
+
+Deno.test("roster : chaque objet d'étagère existe dans data/items.ts", () => {
+  for (const c of Object.values(CHAMPIONS)) {
+    for (const itemId of c.shelf) {
+      assert(ITEMS[itemId], `étagère de ${c.id} référence un objet inconnu : ${itemId}`);
+    }
+  }
+});
+
+Deno.test("roster : la keystone de chaque champion est modélisée", () => {
+  for (const c of Object.values(CHAMPIONS)) {
+    assert(RUNES[c.keystone], `keystone inconnue pour ${c.id} : ${c.keystone}`);
+  }
 });

@@ -76,10 +76,20 @@ export default define.page(function Home() {
       </div>
 
       <section class="champstrip">
-        {CHAMPION_LIST.map((c) => (
+        {CHAMPION_LIST.slice(0, 11).map((c) => (
           <a href={`/lab/${c.id}`} class="champtile">
             <div class="pface small">
               <span class="init">{c.initial}</span>
+              {c.portrait && (
+                <img
+                  class="pimg"
+                  src={c.portrait}
+                  alt={c.name}
+                  loading="lazy"
+                  width={46}
+                  height={46}
+                />
+              )}
             </div>
             <div class="ct-meta">
               <div class="ct-name">{c.name}</div>
@@ -90,7 +100,7 @@ export default define.page(function Home() {
         <a href="/champions" class="champtile more">
           <div class="ct-meta">
             <div class="ct-name">+ TOUT LE ROSTER</div>
-            <div class="ct-sub">le reste arrive via la communauté</div>
+            <div class="ct-sub">{CHAMPION_LIST.length} champions, générés par patch</div>
           </div>
         </a>
       </section>

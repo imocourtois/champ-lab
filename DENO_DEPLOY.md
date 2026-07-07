@@ -1,6 +1,7 @@
 # 🚀 Déployer CHAMP LAB sur Deno Deploy
 
-CHAMP LAB est maintenant configuré pour se déployer automatiquement sur **Deno Deploy** (le hébergeur officiel Deno, optimisé pour Fresh 2.x).
+CHAMP LAB est maintenant configuré pour se déployer automatiquement sur **Deno Deploy** (le hébergeur officiel
+Deno, optimisé pour Fresh 2.x).
 
 ## ✅ Étapes de configuration
 

@@ -34,8 +34,12 @@ export default define.page(function LabPage(ctx) {
         &gt;<b>LABO&nbsp;·&nbsp;{champion.name.toUpperCase()}</b>&lt;
       </div>
 
-      {/* Sélecteur de champion = liens serveur (aucun JS). Chaque champion est sa propre route. */}
+      {
+        /* Sélecteur de champion = liens serveur (aucun JS). Bande défilable ;
+          le picker principal reste /champions. Chaque champion est sa propre route. */
+      }
       <nav class="chswitch" aria-label="Changer de champion">
+        <a href="/champions" class="chswitch-all">◄ ROSTER</a>
         {CHAMPION_LIST.map((c) => (
           <a href={`/lab/${c.id}`} class={`chswitch-btn${c.id === champion.id ? " on" : ""}`}>
             {c.name.toUpperCase()}

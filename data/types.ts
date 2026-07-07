@@ -44,8 +44,10 @@ export interface Champion {
   id: string;
   name: string;
   title: string;
-  /** initiale affichée dans le portrait placeholder (en attendant l'icône CDragon) */
+  /** initiale affichée si le portrait ne charge pas (fallback) */
   initial: string;
+  /** URL de l'icône carrée du champion (Data Dragon / Community Dragon). Optionnel : fallback = initiale. */
+  portrait?: string;
   adaptive: Adaptive;
   /** Darius & co : passif de saignement pris en compte dans le combo */
   hasBleed?: boolean;

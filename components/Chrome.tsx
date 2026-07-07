@@ -51,8 +51,13 @@ export function Nav({ active }: { active: string }) {
           </a>
         );
       })}
-      <a href="https://github.com" class="navlink ghost" target="_blank" rel="noopener noreferrer">
-        GITHUB ↗
+      <a
+        href="https://champ-lab.imocourtois.deno.net/"
+        class="navlink ghost"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        SITE ↗
       </a>
     </nav>
   );
