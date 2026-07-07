@@ -29,20 +29,59 @@ const tyLabel = (
 /** token de classe CSS : "physical" -> "phys" (les autres inchangés) */
 const tyTok = (t: string) => (t === "physical" ? "phys" : t);
 
-function Pips({ rank, max }: { rank: number; max: number }) {
+function Pips(
+  { rank, max, onSet }: { rank: number; max: number; onSet?: (r: number) => void },
+) {
+  // Sans onSet : affichage seul. Avec onSet : chaque pip est cliquable (clic sur
+  // le pip n → rang n ; re-clic sur le dernier pip actif → un rang de moins).
+  if (!onSet) {
+    return (
+      <div class="pips">
+        {Array.from({ length: max }, (_, i) => <span key={i} class={`pip${i < rank ? " on" : ""}`}></span>)}
+      </div>
+    );
+  }
   return (
-    <div class="pips">
-      {Array.from({ length: max }, (_, i) => <span key={i} class={`pip${i < rank ? " on" : ""}`}></span>)}
+    <div class="pips editable">
+      {Array.from({ length: max }, (_, i) => (
+        <button
+          type="button"
+          key={i}
+          class={`pip${i < rank ? " on" : ""}`}
+          aria-label={`rang ${i + 1}`}
+          onClick={() => onSet(i + 1 === rank ? rank - 1 : i + 1)}
+        >
+        </button>
+      ))}
     </div>
   );
 }
 
+/** Rangs de départ d'un champion, déduits de son ordre de compétences au niv N. */
+function initialRanks(champion: Champion, level: number): Record<AbilityKey, number> {
+  return {
+    Q: rankOf(champion, "Q", level),
+    W: rankOf(champion, "W", level),
+    E: rankOf(champion, "E", level),
+    R: rankOf(champion, "R", level),
+  };
+}
+
+/** Niveau minimal auquel l'ultime atteint le rang r (1→6, 2→11, 3→16). */
+const ULT_UNLOCK = [6, 11, 16];
+
+/** Catalogue d'items trié une fois (id + nom, pour la recherche). */
+const ITEM_CATALOG = Object.values(ITEMS).sort((a, b) => a.name.localeCompare(b.name, "fr"));
+
 export default function ChampLab({ champion }: { champion: Champion }) {
   const [level, setLevel] = useState(11);
-  const [itemIds, setItemIds] = useState<string[]>(champion.shelf.slice(0, 2));
+  const [itemIds, setItemIds] = useState<string[]>([]);
+  const [itemQuery, setItemQuery] = useState("");
   const [runeOn, setRuneOn] = useState(true);
+  const [keystoneId, setKeystoneId] = useState<string>(champion.keystone);
   const [impact, setImpact] = useState(true);
   const [bleed, setBleed] = useState(5);
+  const [ranks, setRanks] = useState<Record<AbilityKey, number>>(() => initialRanks(champion, 11));
   const [target, setTarget] = useState({ armor: 60, mr: 40, hpMax: 2000, hpCur: 2000 });
   const [include, setInclude] = useState<IncludeMap>({
     Q: true,
@@ -60,6 +99,8 @@ export default function ChampLab({ champion }: { champion: Champion }) {
     items: ITEMS,
     runes: RUNES,
     runeOn,
+    keystoneId,
+    ranks,
     target,
     bleedStacks: bleed,
     include,
@@ -67,7 +108,7 @@ export default function ChampLab({ champion }: { champion: Champion }) {
   const result = computeCombo(base);
   const byType = damageByType(result.lines);
   const totalDmg = result.total || 1;
-  const keystone = RUNES[champion.keystone];
+  const keystone = RUNES[keystoneId];
 
   // --- mutations d'état ---
   const addItem = (id: string) => {
@@ -86,11 +127,29 @@ export default function ChampLab({ champion }: { champion: Champion }) {
   };
   const toggleInclude = (k: keyof IncludeMap) => setInclude((m) => ({ ...m, [k]: !m[k] }));
 
+  // Réglage manuel du rang d'un sort. Clic sur un pip déjà actif = enlève un rang.
+  const setRank = (key: AbilityKey, r: number) => {
+    const max = champion.abilities[key].maxRank;
+    let next = Math.max(0, Math.min(r, max));
+    // L'ultime n'est disponible qu'aux paliers 6/11/16.
+    if (key === "R") {
+      while (next > 0 && level < ULT_UNLOCK[next - 1]) next--;
+    }
+    setRanks((m) => ({ ...m, [key]: next }));
+  };
+
+  // Quand on change le niveau, on réaligne les rangs sur l'ordre de compétences
+  // (l'utilisateur peut ensuite les retoucher à la main).
+  const changeLevel = (lv: number) => {
+    setLevel(lv);
+    setRanks(initialRanks(champion, lv));
+  };
+
   // --- valeurs dérivées pour l'affichage ---
   const abDamage = (key: AbilityKey): number | null => {
     const ab = champion.abilities[key];
     if (ab.type === "util") return null;
-    let d = abilityRaw(champion, key, level, result.stats) *
+    let d = abilityRaw(champion, key, level, result.stats, ranks) *
       damageMultiplier(ab.type, result.stats, target);
     if (key === "R" && champion.hasBleed) d *= 1 + 0.15 * bleed;
     return d;
@@ -101,6 +160,15 @@ export default function ChampLab({ champion }: { champion: Champion }) {
     : keystone.kind === "electro"
     ? `+${fr(runeLine?.damage ?? 0)}`
     : "+12 AD";
+
+  // Items filtrés par la recherche (catalogue complet à plat).
+  const q = itemQuery.trim().toLowerCase();
+  const shownItems = q
+    ? ITEM_CATALOG.filter((it) =>
+      it.name.toLowerCase().includes(q) || it.short.toLowerCase().includes(q) ||
+      itemStatLine(it.id).toLowerCase().includes(q)
+    )
+    : ITEM_CATALOG;
 
   const curHP = Math.min(target.hpCur, target.hpMax);
   const remain = curHP - result.total;
@@ -122,16 +190,6 @@ export default function ChampLab({ champion }: { champion: Champion }) {
               <div class="portrait">
                 <div class="pface">
                   <span class="init">{champion.initial}</span>
-                  {champion.portrait && (
-                    <img
-                      class="pimg"
-                      src={champion.portrait}
-                      alt={champion.name}
-                      loading="lazy"
-                      width={74}
-                      height={74}
-                    />
-                  )}
                 </div>
                 <div class="pmeta">
                   <div class="name">{champion.name}</div>
@@ -149,7 +207,7 @@ export default function ChampLab({ champion }: { champion: Champion }) {
                   min={1}
                   max={18}
                   value={level}
-                  onInput={(e) => setLevel(+e.currentTarget.value)}
+                  onInput={(e) => changeLevel(+e.currentTarget.value)}
                 />
               </div>
             </div>
@@ -162,19 +220,19 @@ export default function ChampLab({ champion }: { champion: Champion }) {
             </div>
             <div class="pbody" style="padding-top:8px">
               <div class="abhead">
-                <span>SORT</span>
+                <span>SORT — clique les rangs</span>
                 <span>vs CIBLE ↓</span>
               </div>
               {AB_KEYS.map((key) => {
                 const ab = champion.abilities[key];
-                const rank = rankOf(champion, key, level);
+                const rank = ranks[key];
                 if (ab.type === "util") {
                   return (
                     <div class="ab util">
                       <div class="abkey">{key}</div>
                       <div class="abmid">
                         <div class="an">{ab.name}</div>
-                        <Pips rank={rank} max={ab.maxRank} />
+                        <Pips rank={rank} max={ab.maxRank} onSet={(r) => setRank(key, r)} />
                       </div>
                       <div class="abr">
                         <div class="ty" style="color:var(--dim)">UTILITAIRE</div>
@@ -189,7 +247,7 @@ export default function ChampLab({ champion }: { champion: Champion }) {
                     <div class="abkey">{key}</div>
                     <div class="abmid">
                       <div class="an">{ab.name}</div>
-                      <Pips rank={rank} max={ab.maxRank} />
+                      <Pips rank={rank} max={ab.maxRank} onSet={(r) => setRank(key, r)} />
                     </div>
                     <div class="abr" style="display:flex;align-items:center;gap:6px;justify-content:flex-end">
                       <div>
@@ -263,9 +321,20 @@ export default function ChampLab({ champion }: { champion: Champion }) {
                 : <span style="color:var(--dim)">active le MODE IMPACT pour voir les Δ</span>}
             </div>
 
-            <div class="shelf">
-              {champion.shelf.map((id) => {
+            <input
+              type="search"
+              class="itemsearch"
+              placeholder={`Chercher parmi ${ITEM_CATALOG.length} objets…`}
+              value={itemQuery}
+              onInput={(e) => setItemQuery(e.currentTarget.value)}
+            />
+
+            <div class="shelf scroll">
+              {shownItems.length === 0 && <div class="noresult">Aucun objet ne correspond.</div>}
+              {shownItems.map((it) => {
+                const id = it.id;
                 const equipped = itemIds.includes(id);
+                const full = itemIds.length >= MAX_ITEMS;
                 let delta = null;
                 if (impact && !equipped) {
                   const diff = itemImpact(base, id);
@@ -279,11 +348,11 @@ export default function ChampLab({ champion }: { champion: Champion }) {
                     type="button"
                     key={id}
                     class={`chip${equipped ? " equipped" : ""}`}
-                    disabled={equipped}
+                    disabled={equipped || full}
                     onClick={() => addItem(id)}
                   >
-                    <span class="code">{ITEMS[id].short}</span>
-                    <span class="nm">{ITEMS[id].name}</span>
+                    <span class="code">{it.short}</span>
+                    <span class="nm">{it.name}</span>
                     <span class="stats">{itemStatLine(id)}</span>
                     {delta}
                   </button>
@@ -291,24 +360,42 @@ export default function ChampLab({ champion }: { champion: Champion }) {
               })}
             </div>
 
-            <button
-              type="button"
-              class={`rune${runeOn ? "" : " off"}${champion.adaptive === "AD" ? " ad" : ""}`}
-              aria-pressed={runeOn}
-              onClick={() => {
-                setRuneOn(!runeOn);
-                setInclude((m) => ({ ...m, rune: !runeOn }));
-              }}
-            >
-              <div class="l">
-                <div class="rr"></div>
-                <div>
-                  <div class="rn">{keystone.name}</div>
-                  <div class="rc">{keystone.description}</div>
-                </div>
-              </div>
-              <div class="contrib">{runeContrib}</div>
-            </button>
+            <div class="shelfhead" style="margin-top:12px">
+              RUNE KEYSTONE — <span style="color:var(--dim)">choix libre</span>
+            </div>
+            <div class="runepick">
+              {Object.values(RUNES).map((r) => {
+                const active = runeOn && r.id === keystoneId;
+                return (
+                  <button
+                    type="button"
+                    key={r.id}
+                    class={`rune${active ? "" : " off"}${champion.adaptive === "AD" ? " ad" : ""}`}
+                    aria-pressed={active}
+                    onClick={() => {
+                      // Clique la rune active = la couper ; sinon l'active.
+                      if (runeOn && r.id === keystoneId) {
+                        setRuneOn(false);
+                        setInclude((m) => ({ ...m, rune: false }));
+                      } else {
+                        setKeystoneId(r.id);
+                        setRuneOn(true);
+                        setInclude((m) => ({ ...m, rune: true }));
+                      }
+                    }}
+                  >
+                    <div class="l">
+                      <div class="rr"></div>
+                      <div>
+                        <div class="rn">{r.name}</div>
+                        <div class="rc">{r.description}</div>
+                      </div>
+                    </div>
+                    <div class="contrib">{active ? runeContrib : "OFF"}</div>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 

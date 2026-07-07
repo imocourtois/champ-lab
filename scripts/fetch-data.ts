@@ -43,7 +43,6 @@ import {
 
 const MERAKI = "https://cdn.merakianalytics.com/riot/lol/resources/latest/en-US";
 const DDRAGON = "https://ddragon.leagueoflegends.com";
-const CDRAGON_SQUARE = (id: string) => `https://cdn.communitydragon.org/latest/champion/${id}/square`;
 
 const OUT_DIR = new URL("../data/generated/", import.meta.url);
 
@@ -97,6 +96,8 @@ interface MItemStat {
   percent?: number;
 }
 interface MItem {
+  /** id numérique Riot (identique à la clé Data Dragon) — sert au filtre SR */
+  id: number;
   name: string;
   rank?: string[];
   removed?: boolean;
@@ -254,7 +255,6 @@ function mapChampion(m: MChampion): Champion {
     name: m.name,
     title: m.title,
     initial: m.name[0]?.toUpperCase() ?? "?",
-    portrait: CDRAGON_SQUARE(m.key),
     adaptive,
     hasBleed: ov.hasBleed,
     base,
@@ -409,6 +409,18 @@ async function main() {
   champions.sort((a, b) => a.name.localeCompare(b.name, "fr"));
 
   // --- Objets ---
+  // Disponibilité sur la Faille de l'invocateur (classé) : Data Dragon expose
+  // `maps["11"]` (SR). Meraki ne l'a pas, mais la clé numérique d'un item est
+  // commune aux deux → on croise.
+  console.log("▶ Récupération de la disponibilité SR (Data Dragon)…");
+  const ddItems = await fetchJson<{ data: Record<string, { maps?: Record<string, boolean> }> }>(
+    `${DDRAGON}/cdn/${patch}/data/en_US/item.json`,
+  );
+  const srItemIds = new Set<string>();
+  for (const [id, it] of Object.entries(ddItems.data)) {
+    if (it.maps?.["11"]) srItemIds.add(id);
+  }
+
   console.log("▶ Récupération des objets (Meraki)…");
   const rawItems = await fetchJson<Record<string, MItem>>(`${MERAKI}/items.json`);
   const items: Item[] = [];
@@ -416,12 +428,14 @@ async function main() {
   for (const m of Object.values(rawItems)) {
     if (m.removed || m.requiredChampion) continue;
     if (!m.shop?.purchasable) continue;
+    // Faille de l'invocateur uniquement (exclut ARAM, Arena, etc.).
+    if (!srItemIds.has(String(m.id)) && !wanted.has(slugify(m.name))) continue;
     const rank = m.rank ?? [];
-    const isLegendaryOrBoots = rank.includes("LEGENDARY") || rank.includes("BOOTS");
+    // Objets « complets » choisissables : légendaires (tier 3) + bottes (toutes
+    // tiers, y compris les bottes améliorées). On écarte composants/starters.
+    const isCompleteItem = rank.includes("LEGENDARY") || rank.includes("BOOTS");
     const id = slugify(m.name);
-    // On garde : les légendaires/bottes portant une stat pertinente, plus la
-    // whitelist explicite (permet d'inclure un objet précis sans stat plate).
-    if (!isLegendaryOrBoots && !wanted.has(id)) continue;
+    if (!isCompleteItem && !wanted.has(id)) continue;
     const stats = mapItemStats(m);
     const ov = ITEM_OVERRIDES[id];
     const merged: ItemStats = { ...stats, ...(ov?.stats ?? {}) };

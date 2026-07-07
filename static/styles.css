@@ -359,16 +359,6 @@ button {
   position: relative;
   text-shadow: 0 0 10px rgba(182, 242, 74, 0.4);
 }
-/* Portrait réel (icône carrée du champion). L'initiale reste en fallback dessous. */
-.pface .pimg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-  filter: saturate(0.85) contrast(1.05);
-}
 .pface.small .init {
   font-size: 20px;
 }
@@ -686,6 +676,75 @@ input[type=range].en::-moz-range-thumb {
   color: var(--dim);
 }
 
+/* pips cliquables (montée des sorts manuelle) */
+.pips.editable .pip {
+  cursor: pointer;
+  padding: 0;
+  transition: 0.1s;
+}
+.pips.editable .pip:hover {
+  border-color: var(--green);
+  box-shadow: 0 0 6px rgba(182, 242, 74, 0.35);
+}
+
+/* recherche d'objets */
+.itemsearch {
+  width: 100%;
+  border: 1px solid var(--line2);
+  background: #0a0f06;
+  color: var(--cream);
+  font: inherit;
+  font-size: 11px;
+  padding: 7px 9px;
+  margin-bottom: 8px;
+  letter-spacing: 0.03em;
+}
+.itemsearch::placeholder {
+  color: var(--dim);
+}
+.itemsearch:focus {
+  outline: none;
+  border-color: var(--green);
+}
+
+/* catalogue complet : liste défilable */
+.shelf.scroll {
+  max-height: 340px;
+  overflow-y: auto;
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line2) transparent;
+}
+.shelf.scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.shelf.scroll::-webkit-scrollbar-track {
+  background: #0a0f06;
+}
+.shelf.scroll::-webkit-scrollbar-thumb {
+  background: var(--line2);
+  border: 2px solid #0a0f06;
+}
+.shelf.scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--green);
+}
+.chip:disabled {
+  cursor: not-allowed;
+}
+.noresult {
+  font-size: 11px;
+  color: var(--dim);
+  padding: 12px 4px;
+  text-align: center;
+}
+
+/* sélecteur de runes (toutes les runes) */
+.runepick {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 /* ---------- rune ---------- */
 .rune {
   display: flex;
@@ -951,8 +1010,22 @@ input[type=range].en::-moz-range-thumb {
      boutons. Le picker principal reste la page /champions. */
   flex-wrap: nowrap;
   overflow-x: auto;
-  padding-bottom: 6px;
+  padding-bottom: 8px;
   scrollbar-width: thin;
+  scrollbar-color: var(--line2) transparent;
+}
+.chswitch::-webkit-scrollbar {
+  height: 8px;
+}
+.chswitch::-webkit-scrollbar-track {
+  background: #0a0f06;
+  border: 1px solid var(--line);
+}
+.chswitch::-webkit-scrollbar-thumb {
+  background: var(--line2);
+}
+.chswitch::-webkit-scrollbar-thumb:hover {
+  background: var(--green);
 }
 .chswitch-btn {
   border: 1px solid var(--line);

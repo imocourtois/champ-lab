@@ -1,22 +1,21 @@
 import type { Champion } from "@/data/types.ts";
 import { GENERATED_CHAMPIONS } from "@/data/generated/champions.gen.ts";
+import { MANUAL_CHAMPIONS } from "@/data/manual.ts";
 
 /**
- * Champions — roster complet généré depuis Meraki + Data Dragon.
+ * Champions — roster complet généré depuis Meraki + Data Dragon, complété par
+ * quelques champions saisis à la main (trop récents pour Meraki).
  *
- * >>> ON N'ÉDITE PLUS CE FICHIER À LA MAIN. <<<
- * Les données brutes sont dans data/generated/champions.gen.ts (régénérées par
- * `deno task data`). Les réglages de théorycraft — étagères d'objets, rune par
- * défaut, ordre de compétences, corrections de ratios — vivent dans
- * data/overrides.ts et sont appliqués au moment de la génération.
- *
- * Ajouter/affiner un champion = éditer data/overrides.ts puis `deno task data`.
- * Voir docs/adding-a-champion.md.
+ * >>> ON N'ÉDITE PAS data/generated/. <<<
+ * Les données brutes sont régénérées par `deno task data`. Les réglages de
+ * théorycraft (étagères, rune, ordre de compétences, corrections de ratios)
+ * vivent dans data/overrides.ts. Les champions non encore dans Meraki sont dans
+ * data/manual.ts. Voir docs/adding-a-champion.md.
  */
-export const CHAMPIONS: Record<string, Champion> = GENERATED_CHAMPIONS;
+export const CHAMPIONS: Record<string, Champion> = { ...MANUAL_CHAMPIONS, ...GENERATED_CHAMPIONS };
 
-/** Liste ordonnée (alphabétique), pratique pour le roster. */
-export const CHAMPION_LIST = Object.values(CHAMPIONS);
+/** Liste triée alphabétiquement (généré + manuel confondus), pour le roster. */
+export const CHAMPION_LIST = Object.values(CHAMPIONS).sort((a, b) => a.name.localeCompare(b.name, "fr"));
 
 /** Slugs disponibles (pour valider une route /lab/[champion]). */
-export const CHAMPION_IDS = Object.keys(CHAMPIONS);
+export const CHAMPION_IDS = CHAMPION_LIST.map((c) => c.id);

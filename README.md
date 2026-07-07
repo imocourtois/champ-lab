@@ -130,6 +130,10 @@ Le pipeline (`scripts/fetch-data.ts`, lancé par `deno task data`) combine deux 
 - **[Meraki / lolstaticdata](https://github.com/meraki-analytics/lolstaticdata)** — stats de base, ratios de
   sorts (AP / AD / AD bonus) et stats plates d'objets, parsés du wiki et versionnés par patch.
 
+Les objets sont filtrés sur la **Faille de l'invocateur** (classé) via Data Dragon (`maps["11"]`) : objets
+complets et bottes (y compris améliorées), pas de composants ni d'objets ARAM/Arena. Les champions non encore
+présents dans Meraki (ex. Locke) sont saisis à la main dans `data/manual.ts` et fusionnés au roster.
+
 **Honnêteté :** le pipeline n'extrait que ce que le moteur sait déjà modéliser. Ce que Meraki encode en texte
 (passifs conditionnels, dégâts en % PV, cumuls) n'est **pas deviné** : ces cas restent à coder à la main dans
 `lib/engine.ts` et à réinjecter via `data/overrides.ts`. C'est un travail continu, idéal pour contribuer.

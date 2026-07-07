@@ -57,6 +57,13 @@ ne garde que les légendaires/bottes portant une stat modélisée). Deux leviers
 - `ITEM_OVERRIDES` — réinjecte un passif que le moteur sait modéliser mais que Meraki ne donne pas en stat
   plate (ex. Rabadon `apAmp: 0.30`, Fendoir noir `armorPenPercent: 0.30`) et fige un libellé court.
 
+## 2 bis. Champion trop récent pour Meraki
+
+Certains champions sortent dans Data Dragon avant d'être dans Meraki (ex. Locke). Le pipeline les saute (404
+côté Meraki). En attendant, ajoute-les **à la main** dans `data/manual.ts` : stats de base et types de dégâts
+confirmés (Data Dragon), valeurs de dégâts illustratives à raffiner. Ils sont fusionnés au roster et remplacés
+automatiquement dès que Meraki les publie (retire alors l'entrée).
+
 ## 3. Cas complexes → moteur
 
 Si le champion a une mécanique que le modèle générique ne couvre pas (passif conditionnel, dégâts % PV cible,

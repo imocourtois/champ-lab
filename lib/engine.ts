@@ -60,6 +60,7 @@ export function computeStats(
   items: Record<string, Item>,
   runes: Record<string, RuneDef>,
   runeOn: boolean,
+  keystoneId: string = champion.keystone,
 ): DerivedStats {
   const stats = itemIds.map((id) => items[id].stats);
   const baseAD = growth(champion.base.ad, champion.base.adPerLevel, level);
@@ -69,7 +70,7 @@ export function computeStats(
   const apAmp = stats.reduce((a, s) => a + (s.apAmp ?? 0), 0);
 
   // Rune Conquérant : +AD adaptatif à pleins stacks (le soin n'est pas modélisé).
-  const keystone = runes[champion.keystone];
+  const keystone = runes[keystoneId];
   if (runeOn && keystone?.kind === "conqueror") bonusAD += 12;
 
   return {
@@ -96,11 +97,35 @@ export function damageMultiplier(type: DamageType, s: DerivedStats, t: TargetPro
   return 100 / (100 + armor);
 }
 
+/**
+ * Rang effectif d'un sort : rang explicite choisi par l'utilisateur s'il est
+ * fourni, sinon rang déduit de l'ordre de compétences au niveau donné.
+ */
+export function resolveRank(
+  champion: Champion,
+  key: AbilityKey,
+  level: number,
+  ranks?: Partial<Record<AbilityKey, number>>,
+): number {
+  const explicit = ranks?.[key];
+  if (explicit !== undefined) {
+    return Math.max(0, Math.min(explicit, champion.abilities[key].maxRank));
+  }
+  return rankOf(champion, key, level);
+}
+
 /** Dégâts bruts d'un sort (avant résistances). */
-export function abilityRaw(champion: Champion, key: AbilityKey, level: number, s: DerivedStats): number {
+export function abilityRaw(
+  champion: Champion,
+  key: AbilityKey,
+  level: number,
+  s: DerivedStats,
+  ranks?: Partial<Record<AbilityKey, number>>,
+): number {
   const ability = champion.abilities[key];
   if (ability.type === "util") return 0;
-  const rank = rankOf(champion, key, level);
+  const rank = resolveRank(champion, key, level, ranks);
+  if (rank < 1) return 0; // sort pas encore appris
   const r = ability.ratios;
   return (ability.base[rank - 1] ?? 0) +
     (r.ap ?? 0) * s.ap +
@@ -118,6 +143,10 @@ export interface ComboInput {
   target: TargetProfile;
   bleedStacks: number;
   include: IncludeMap;
+  /** rangs choisis à la main (Q/W/E/R). Absent = déduit de skillOrder + niveau. */
+  ranks?: Partial<Record<AbilityKey, number>>;
+  /** rune keystone active (id de data/runes.ts). Absent = champion.keystone. */
+  keystoneId?: string;
 }
 
 export interface ComboResult {
@@ -131,8 +160,9 @@ export interface ComboResult {
 
 /** Calcule le combo complet : lignes de dégâts, total, seuil d'exécution. */
 export function computeCombo(input: ComboInput): ComboResult {
-  const { champion, level, itemIds, items, runes, runeOn, target, bleedStacks, include } = input;
-  const stats = computeStats(champion, level, itemIds, items, runes, runeOn);
+  const { champion, level, itemIds, items, runes, runeOn, target, bleedStacks, include, ranks } = input;
+  const keystoneId = input.keystoneId ?? champion.keystone;
+  const stats = computeStats(champion, level, itemIds, items, runes, runeOn, keystoneId);
   const lines: DamageLine[] = [];
 
   const keys: AbilityKey[] = ["Q", "W", "E", "R"];
@@ -140,7 +170,9 @@ export function computeCombo(input: ComboInput): ComboResult {
     const ability = champion.abilities[key];
     if (ability.type === "util") continue;
     if (!include[key]) continue;
-    let dmg = abilityRaw(champion, key, level, stats) * damageMultiplier(ability.type, stats, target);
+    const raw = abilityRaw(champion, key, level, stats, ranks);
+    if (raw <= 0) continue; // sort pas appris (rang 0) → pas de ligne
+    let dmg = raw * damageMultiplier(ability.type, stats, target);
     // L'ultime de Darius gagne en dégâts par stack d'hémorragie.
     if (key === "R" && champion.hasBleed) dmg *= 1 + 0.15 * bleedStacks;
     lines.push({ key, name: ability.name, type: ability.type, damage: dmg });
@@ -158,7 +190,7 @@ export function computeCombo(input: ComboInput): ComboResult {
   }
 
   // Rune Électrocution : burst adaptatif après 3 sorts.
-  const keystone = runes[champion.keystone];
+  const keystone = runes[keystoneId];
   if (runeOn && keystone?.kind === "electro" && include.rune) {
     const raw = 30 + (150 * (level - 1)) / 17 + 0.1 * stats.ap + 0.25 * stats.bonusAD;
     lines.push({
