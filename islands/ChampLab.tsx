@@ -5,8 +5,10 @@ import { ITEMS, itemStatLine } from "@/data/items.ts";
 import { RUNE_LIST, RUNES } from "@/data/runes.ts";
 import {
   abilityRaw,
+  BLEED_ULT_AMP_PER_STACK,
   type ComboInput,
   computeCombo,
+  conquerorBonus,
   damageByType,
   damageMultiplier,
   itemImpactFrom,
@@ -151,15 +153,18 @@ export default function ChampLab({ champion }: { champion: Champion }) {
     if (ab.type === "util") return null;
     let d = abilityRaw(champion, key, level, result.stats, ranks) *
       damageMultiplier(ab.type, result.stats, target);
-    if (key === "R" && champion.hasBleed) d *= 1 + 0.15 * bleed;
+    if (key === "R" && champion.hasBleed) d *= 1 + BLEED_ULT_AMP_PER_STACK * bleed;
     return d;
   };
   const runeLine = result.lines.find((l) => l.key === "✦");
+  const conq = conquerorBonus(champion.adaptive, level);
   const runeContrib = !runeOn
     ? "OFF"
     : keystone.kind === "electro"
     ? `+${fr(runeLine?.damage ?? 0)}`
-    : "+12 AD";
+    : champion.adaptive === "AD"
+    ? `+${fr(conq.ad)} AD`
+    : `+${fr(conq.ap)} AP`;
 
   // Items filtrés par la recherche (catalogue complet à plat).
   const q = itemQuery.trim().toLowerCase();

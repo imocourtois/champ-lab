@@ -93,6 +93,18 @@ interface MChampion {
   abilities: Record<string, MAbility[]>;
 }
 
+/** Stats de base Data Dragon (champion.json) — source de vérité "plate", par patch. */
+interface DDChampStats {
+  hp: number;
+  hpperlevel: number;
+  armor: number;
+  armorperlevel: number;
+  spellblock: number;
+  spellblockperlevel: number;
+  attackdamage: number;
+  attackdamageperlevel: number;
+}
+
 interface MItemStat {
   flat?: number;
   percent?: number;
@@ -212,19 +224,23 @@ function extractAbilityDamage(ability: MAbility): { base: number[]; ratios: Abil
 
 const ABILITY_KEYS: AbilityKey[] = ["Q", "W", "E", "R"];
 
-function mapChampion(m: MChampion): Champion {
+function mapChampion(m: MChampion, dd?: DDChampStats): Champion {
   const id = slugify(m.key);
   const ov = CHAMPION_OVERRIDES[id] ?? {};
 
+  // Stats plates : Data Dragon (versionné par patch) fait foi — Meraki "latest"
+  // peut être en retard d'un ou plusieurs patchs. Exception : adPerLevel, que
+  // Data Dragon renvoie à 0 (bug connu) → Meraki fait foi.
+  const pick = (ddv: number | undefined, mv: number) => (ddv && ddv > 0 ? ddv : mv);
   const base: ChampionBaseStats = {
-    ad: round(m.stats.attackDamage.flat),
+    ad: round(pick(dd?.attackdamage, m.stats.attackDamage.flat)),
     adPerLevel: round(m.stats.attackDamage.perLevel),
-    hp: round(m.stats.health.flat),
-    hpPerLevel: round(m.stats.health.perLevel),
-    armor: round(m.stats.armor.flat),
-    armorPerLevel: round(m.stats.armor.perLevel),
-    mr: round(m.stats.magicResistance.flat),
-    mrPerLevel: round(m.stats.magicResistance.perLevel),
+    hp: round(pick(dd?.hp, m.stats.health.flat)),
+    hpPerLevel: round(pick(dd?.hpperlevel, m.stats.health.perLevel)),
+    armor: round(pick(dd?.armor, m.stats.armor.flat)),
+    armorPerLevel: round(pick(dd?.armorperlevel, m.stats.armor.perLevel)),
+    mr: round(pick(dd?.spellblock, m.stats.magicResistance.flat)),
+    mrPerLevel: round(pick(dd?.spellblockperlevel, m.stats.magicResistance.perLevel)),
   };
 
   const adaptive: Adaptive = ov.adaptive ?? (m.adaptiveType === "PHYSICAL_DAMAGE" ? "AD" : "AP");
@@ -290,7 +306,7 @@ function applyAbilityOverrides(id: string, abilities: Record<AbilityKey, Ability
 // Mapping objet
 // ---------------------------------------------------------------------------
 
-function mapItemStats(m: MItem): ItemStats {
+function mapItemStats(m: MItem, dd?: Record<string, number>): ItemStats {
   const s = m.stats ?? {};
   const stats: ItemStats = {};
   const flat = (k: string) => s[k]?.flat ?? 0;
@@ -305,6 +321,16 @@ function mapItemStats(m: MItem): ItemStats {
   if (pct("magicPenetration")) stats.magicPenPercent = round(pct("magicPenetration") / 100, 3);
   if (pct("armorPenetration")) stats.armorPenPercent = round(pct("armorPenetration") / 100, 3);
   if (flat("lethality")) stats.lethality = round(flat("lethality"));
+
+  // Stats plates : Data Dragon (versionné par patch) fait foi quand il les
+  // expose — Meraki "latest" peut retarder d'un ou plusieurs patchs. L'AH, la
+  // létalité et les %pén n'existent pas côté DD : Meraki fait foi.
+  if (dd) {
+    if (dd.FlatPhysicalDamageMod) stats.ad = round(dd.FlatPhysicalDamageMod);
+    if (dd.FlatMagicDamageMod) stats.ap = round(dd.FlatMagicDamageMod);
+    if (dd.FlatHPPoolMod) stats.hp = round(dd.FlatHPPoolMod);
+    if (dd.FlatArmorMod) stats.armor = round(dd.FlatArmorMod);
+  }
   return stats;
 }
 
@@ -466,10 +492,13 @@ async function main() {
 
   // --- Champions ---
   console.log("▶ Récupération de la liste des champions (Data Dragon)…");
-  const dd = await fetchJson<{ data: Record<string, { id: string }> }>(
+  const dd = await fetchJson<{ data: Record<string, { id: string; stats: DDChampStats }> }>(
     `${DDRAGON}/cdn/${patch}/data/en_US/champion.json`,
   );
   const championIds = Object.values(dd.data).map((c) => c.id).sort();
+  // Stats de base par slug — croisées avec Meraki dans mapChampion.
+  const ddStatsBySlug = new Map<string, DDChampStats>();
+  for (const c of Object.values(dd.data)) ddStatsBySlug.set(slugify(c.id), c.stats);
   console.log(`  ${championIds.length} champions à traiter.`);
 
   const champions: Champion[] = [];
@@ -486,7 +515,7 @@ async function main() {
       const r = results[j];
       if (r.status === "fulfilled") {
         try {
-          champions.push(mapChampion(r.value));
+          champions.push(mapChampion(r.value, ddStatsBySlug.get(slugify(r.value.key))));
           if (r.value.patchLastChanged) merakiPatches.push(r.value.patchLastChanged);
         } catch (e) {
           console.warn(`  ⚠ mapping échoué pour ${slice[j]} : ${(e as Error).message}`);
@@ -513,7 +542,9 @@ async function main() {
   // `maps["11"]` (SR). Meraki ne l'a pas, mais la clé numérique d'un item est
   // commune aux deux → on croise.
   console.log("▶ Récupération de la disponibilité SR (Data Dragon)…");
-  const ddItems = await fetchJson<{ data: Record<string, { maps?: Record<string, boolean> }> }>(
+  const ddItems = await fetchJson<
+    { data: Record<string, { maps?: Record<string, boolean>; stats?: Record<string, number> }> }
+  >(
     `${DDRAGON}/cdn/${patch}/data/en_US/item.json`,
   );
   const srItemIds = new Set<string>();
@@ -536,7 +567,7 @@ async function main() {
     const isCompleteItem = rank.includes("LEGENDARY") || rank.includes("BOOTS");
     const id = slugify(m.name);
     if (!isCompleteItem && !wanted.has(id)) continue;
-    const stats = mapItemStats(m);
+    const stats = mapItemStats(m, ddItems.data[String(m.id)]?.stats);
     const ov = ITEM_OVERRIDES[id];
     const merged: ItemStats = { ...stats, ...(ov?.stats ?? {}) };
     // Un objet sans aucune stat modélisée n'apporte rien au moteur : on l'écarte

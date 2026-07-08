@@ -28,7 +28,7 @@ export const CHAMPION_OVERRIDES: Record<string, ChampionOverride> = {
   monchamp: {
     // adaptive: "AP",          // force AP/AD si Meraki se trompe
     // hasBleed: true,          // active un DoT/exécution type Darius
-    keystone: "electro", // rune keystone par défaut (id de data/runes.ts)
+    keystone: "electrocute", // rune keystone par défaut (id de data/runes.ts)
     // ordre de montée des sorts (18 entrées) : déduit le rang au niveau N
     skillOrder: ["Q", "W", "E", "Q", "Q", "R", "Q", "E", "Q", "E", "R", "E", "E", "W", "W", "R", "W", "W"],
     // étagère d'objets recommandés (ids de data/items.ts, tels que slugifiés)

@@ -137,3 +137,44 @@ Deno.test("champion manuel (Locke) est présent et se calcule", () => {
   const res = computeCombo(input("locke", ["ludensecho", "rabadonsdeathcap"]));
   assert(res.total > 0, "le combo de Locke doit produire des dégâts");
 });
+
+// --- Passifs & runes : les mécaniques modélisées doivent être EFFECTIVES. ---
+
+Deno.test("hémorragie : le saignement croît avec les stacks, et ×0 = pas de ligne", () => {
+  const items = ["stridebreaker", "blackcleaver"];
+  const one = computeCombo(input("darius", items, { bleedStacks: 1 }));
+  const five = computeCombo(input("darius", items, { bleedStacks: 5 }));
+  const zero = computeCombo(input("darius", items, { bleedStacks: 0 }));
+  const bleedOf = (r: typeof one) => r.lines.find((l) => l.key === "P")?.damage ?? 0;
+  assert(bleedOf(five) > bleedOf(one), "5 stacks doivent saigner plus qu'un seul");
+  assertAlmostEquals(bleedOf(five), 5 * bleedOf(one), 0.001, "le saignement est linéaire en stacks");
+  assertEquals(zero.lines.find((l) => l.key === "P"), undefined, "0 stack = pas de saignement");
+});
+
+Deno.test("guillotine : +20 %/stack, doublée à 5 stacks d'hémorragie", () => {
+  const items = ["stridebreaker", "blackcleaver"];
+  const r0 = computeCombo(input("darius", items, { bleedStacks: 0 })).lines.find((l) => l.key === "R");
+  const r5 = computeCombo(input("darius", items, { bleedStacks: 5 })).lines.find((l) => l.key === "R");
+  assert(r0 && r5, "l'ultime doit produire une ligne");
+  assertAlmostEquals(r5.damage, 2 * r0.damage, 0.001, "5 stacks = dégâts d'ultime doublés");
+});
+
+Deno.test("conquérant : effectif aussi pour un champion AP (force adaptative)", () => {
+  const on = computeCombo(input("ahri", ["ludensecho"], { keystoneId: "conqueror", runeOn: true })).total;
+  const off = computeCombo(input("ahri", ["ludensecho"], { keystoneId: "conqueror", runeOn: false })).total;
+  assert(on > off, "Conquérant doit augmenter les dégâts d'un champion AP");
+});
+
+Deno.test("conquérant : la force adaptative croît avec le niveau", () => {
+  const lvl6 = computeCombo(input("darius", [], { keystoneId: "conqueror", level: 6 }));
+  const lvl18 = computeCombo(input("darius", [], { keystoneId: "conqueror", level: 18 }));
+  assert(lvl18.stats.bonusAD > lvl6.stats.bonusAD, "l'AD bonus de Conquérant doit croître avec le niveau");
+});
+
+Deno.test("électrocution : adaptative — physique pour un profil AD équipé", () => {
+  const res = computeCombo(input("darius", ["stridebreaker"], { keystoneId: "electrocute" }));
+  const line = res.lines.find((l) => l.key === "✦");
+  assertEquals(line?.type, "physical", "avec de l'AD bonus et 0 AP, le burst doit être physique");
+  const ahri = computeCombo(input("ahri", ["ludensecho"], { keystoneId: "electrocute" }));
+  assertEquals(ahri.lines.find((l) => l.key === "✦")?.type, "magic", "profil AP → burst magique");
+});

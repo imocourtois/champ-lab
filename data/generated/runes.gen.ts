@@ -2,7 +2,7 @@
 // Source : Meraki (lolstaticdata) + Data Dragon.
 // Régénérer : deno task data
 // Patch de référence : 16.13.1
-// Généré le : 2026-07-07
+// Généré le : 2026-07-08
 
 import type { RuneDef } from "../types.ts";
 
