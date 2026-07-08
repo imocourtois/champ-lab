@@ -13,6 +13,7 @@
 
 import type {
   AbilityKey,
+  Adaptive,
   Champion,
   DamageLine,
   DamageType,
@@ -21,6 +22,21 @@ import type {
   RuneDef,
   TargetProfile,
 } from "@/data/types.ts";
+
+/** Amplification de l'ultime par stack d'hémorragie : +20 %/stack, +100 % max à 5. */
+export const BLEED_ULT_AMP_PER_STACK = 0.2;
+
+/**
+ * Rune Conquérant à pleins stacks (12) : force adaptative interpolée par niveau.
+ * 12,96–30,66 AD bonus ou 21,6–51,11 AP selon le profil adaptatif du champion.
+ * (Le soin à pleins stacks n'est pas modélisé.)
+ */
+export function conquerorBonus(adaptive: Adaptive, level: number): { ad: number; ap: number } {
+  const t = (level - 1) / 17;
+  return adaptive === "AD"
+    ? { ad: 12.96 + (30.66 - 12.96) * t, ap: 0 }
+    : { ad: 0, ap: 21.6 + (51.11 - 21.6) * t };
+}
 
 /** Croissance d'une stat par niveau (formule officielle de League). */
 export function growth(base: number, perLevel: number, level: number): number {
@@ -66,12 +82,17 @@ export function computeStats(
   const baseAD = growth(champion.base.ad, champion.base.adPerLevel, level);
 
   let bonusAD = stats.reduce((a, s) => a + (s.ad ?? 0), 0);
-  const flatAP = stats.reduce((a, s) => a + (s.ap ?? 0), 0);
+  let flatAP = stats.reduce((a, s) => a + (s.ap ?? 0), 0);
   const apAmp = stats.reduce((a, s) => a + (s.apAmp ?? 0), 0);
 
-  // Rune Conquérant : +AD adaptatif à pleins stacks (le soin n'est pas modélisé).
+  // Rune Conquérant : force adaptative à pleins stacks — AD bonus ou AP selon
+  // le profil du champion. L'AP gagnée profite à l'amplification (Rabadon).
   const keystone = runes[keystoneId];
-  if (runeOn && keystone?.kind === "conqueror") bonusAD += 12;
+  if (runeOn && keystone?.kind === "conqueror") {
+    const conq = conquerorBonus(champion.adaptive, level);
+    bonusAD += conq.ad;
+    flatAP += conq.ap;
+  }
 
   return {
     baseAD,
@@ -173,14 +194,16 @@ export function computeCombo(input: ComboInput): ComboResult {
     const raw = abilityRaw(champion, key, level, stats, ranks);
     if (raw <= 0) continue; // sort pas appris (rang 0) → pas de ligne
     let dmg = raw * damageMultiplier(ability.type, stats, target);
-    // L'ultime de Darius gagne en dégâts par stack d'hémorragie.
-    if (key === "R" && champion.hasBleed) dmg *= 1 + 0.15 * bleedStacks;
+    // L'ultime de Darius gagne +20 % de dégâts par stack d'hémorragie (max +100 %).
+    if (key === "R" && champion.hasBleed) dmg *= 1 + BLEED_ULT_AMP_PER_STACK * bleedStacks;
     lines.push({ key, name: ability.name, type: ability.type, damage: dmg });
   }
 
-  // Saignement (Hémorragie) : DoT physique sur les stacks accumulés.
-  if (champion.hasBleed && include.bleed) {
-    const raw = 6 * level + stats.bonusAD;
+  // Saignement (Hémorragie) : 13–30 selon le niveau (+30 % AD bonus) de dégâts
+  // physiques PAR stack, sur 5 s.
+  if (champion.hasBleed && include.bleed && bleedStacks > 0) {
+    const perStack = 12 + level + 0.3 * stats.bonusAD;
+    const raw = perStack * bleedStacks;
     lines.push({
       key: "P",
       name: `Hémorragie ×${bleedStacks}`,
@@ -189,15 +212,20 @@ export function computeCombo(input: ComboInput): ComboResult {
     });
   }
 
-  // Rune Électrocution : burst adaptatif après 3 sorts.
+  // Rune Électrocution : burst après 3 sorts/attaques distincts. 70–260 selon
+  // le niveau (+5 % AP, +10 % AD bonus) ; dégâts adaptatifs — physiques si la
+  // contribution AD dépasse la contribution AP, magiques sinon.
   const keystone = runes[keystoneId];
   if (runeOn && keystone?.kind === "electro" && include.rune) {
-    const raw = 30 + (150 * (level - 1)) / 17 + 0.1 * stats.ap + 0.25 * stats.bonusAD;
+    const fromAP = 0.05 * stats.ap;
+    const fromAD = 0.1 * stats.bonusAD;
+    const raw = 70 + (190 * (level - 1)) / 17 + fromAP + fromAD;
+    const type: DamageType = fromAD > fromAP ? "physical" : "magic";
     lines.push({
       key: "✦",
       name: "Électrocution",
-      type: "magic",
-      damage: raw * damageMultiplier("magic", stats, target),
+      type,
+      damage: raw * damageMultiplier(type, stats, target),
     });
   }
 

@@ -2,7 +2,7 @@
 // Source : Meraki (lolstaticdata) + Data Dragon.
 // Régénérer : deno task data
 // Patch de référence : 16.13.1
-// Généré le : 2026-07-07
+// Généré le : 2026-07-08
 
 import type { Item } from "../types.ts";
 
@@ -252,8 +252,8 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "name": "Dusk and Dawn",
     "short": "DUSK",
     "stats": {
-      "ap": 70,
-      "hp": 350,
+      "ap": 60,
+      "hp": 300,
       "abilityHaste": 20,
     },
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/2510.png",
@@ -422,7 +422,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "name": "Hubris",
     "short": "HUBRIS",
     "stats": {
-      "ad": 60,
+      "ad": 55,
       "abilityHaste": 10,
       "lethality": 18,
     },
@@ -551,7 +551,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "LOCKET",
     "stats": {
       "hp": 200,
-      "armor": 25,
+      "armor": 30,
       "abilityHaste": 10,
     },
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3190.png",
@@ -903,6 +903,7 @@ export const GENERATED_ITEMS: Record<string, Item> = {
     "short": "STATIKK",
     "stats": {
       "ad": 45,
+      "ap": 45,
     },
     "icon": "https://ddragon.leagueoflegends.com/cdn/16.13.1/img/item/3087.png",
   },

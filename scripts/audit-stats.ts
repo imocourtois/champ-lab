@@ -59,11 +59,12 @@ async function auditProvenance() {
   console.log(`  Meraki latest (échantillon Lee Sin) : patch ${merakiPatch}`);
   if (merakiPatch !== "?" && !PATCH.startsWith(merakiPatch.split(".")[0])) {
     issues.push({
-      severity: "écart",
+      severity: "info",
       entity: "PIPELINE",
       field: "provenance",
-      detail: `Meraki 'latest' est sur ${merakiPatch}, Data Dragon sur ${ddMajor} — les stats champions ` +
-        `viennent d'un patch plus ancien. La plupart des écarts ci-dessous en découlent.`,
+      detail: `Meraki 'latest' est sur ${merakiPatch}, Data Dragon sur ${ddMajor}. Les stats plates ` +
+        `(champions & objets) sont recroisées avec Data Dragon par le pipeline ; seuls les ratios de ` +
+        `sorts et l'AD/niveau restent tributaires de Meraki.`,
     });
   }
   console.log();
@@ -133,9 +134,15 @@ async function auditItems() {
   );
   // DD ne structure pas les stats aussi proprement que Meraki ; on vérifie via
   // le bloc `stats` de DD quand il existe (clés type FlatPhysicalDamageMod…).
+  // ⚠ Un même nom existe en plusieurs variantes (ids 22XXXX = équilibrage ARAM,
+  // hors Faille) : on croise par id numérique (celui de l'URL d'icône) et le
+  // secours par nom ne considère que les objets de la Faille (maps["11"]).
+  const byId = new Map<string, Record<string, number>>();
   const byName = new Map<string, Record<string, number>>();
-  for (const it of Object.values(dd.data)) {
-    byName.set(it.name.toLowerCase(), (it as { stats?: Record<string, number> }).stats ?? {});
+  for (const [ddId, raw] of Object.entries(dd.data)) {
+    const it = raw as { name: string; maps?: Record<string, boolean>; stats?: Record<string, number> };
+    byId.set(ddId, it.stats ?? {});
+    if (it.maps?.["11"]) byName.set(it.name.toLowerCase(), it.stats ?? {});
   }
   const DD_KEY: Record<string, string> = {
     ad: "FlatPhysicalDamageMod",
@@ -144,7 +151,8 @@ async function auditItems() {
     armor: "FlatArmorMod",
   };
   for (const it of Object.values(ITEMS)) {
-    const ddStats = byName.get(it.name.toLowerCase());
+    const numericId = it.icon?.match(/\/item\/(\d+)\.png$/)?.[1];
+    const ddStats = (numericId ? byId.get(numericId) : undefined) ?? byName.get(it.name.toLowerCase());
     if (!ddStats) {
       issues.push({
         severity: "info",
