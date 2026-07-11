@@ -52,7 +52,7 @@ export function Nav({ active }: { active: string }) {
         );
       })}
       <a
-        href="https://champ-lab.imocourtois.deno.net/"
+        href="https://champ-lab.simon256px.deno.net/"
         class="navlink ghost"
         target="_blank"
         rel="noopener noreferrer"

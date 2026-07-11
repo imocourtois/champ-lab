@@ -16,7 +16,7 @@ Deno, optimisé pour Fresh 2.x).
 
 1. Sur https://dash.deno.com, clique "Create Project"
 2. Nomme le projet : **`champ-lab`** (doit correspondre au nom dans le workflow)
-3. Relie le repository GitHub : `imocourtois/champ-lab`
+3. Relie le repository GitHub : `Simon256px/champ-lab`
 4. Sélectionne la branche : `main`
 5. Laisse les paramètres par défaut (auto-deploy depuis `main.ts`)
 6. Clique "Create"
@@ -30,7 +30,7 @@ Deno, optimisé pour Fresh 2.x).
 
 ### 4. Ajouter le token comme secret GitHub
 
-1. Va sur https://github.com/imocourtois/champ-lab
+1. Va sur https://github.com/Simon256px/champ-lab
 2. Settings → Secrets and variables → Actions
 3. Clique "New repository secret"
 4. Nomme-le : `DENO_DEPLOY_TOKEN`
@@ -40,7 +40,7 @@ Deno, optimisé pour Fresh 2.x).
 ### 5. Déclencher le déploiement
 
 1. Fais un commit/push sur la branche `main` (ou re-run l'action GitHub)
-2. Va sur https://github.com/imocourtois/champ-lab/actions
+2. Va sur https://github.com/Simon256px/champ-lab/actions
 3. Regarde le workflow s'exécuter
 4. Une fois terminé (✅), ton site sera live à : **`https://champ-lab.deno.dev`**
 
@@ -57,7 +57,7 @@ Deno, optimisé pour Fresh 2.x).
 
 - **Dashboard Deno Deploy** : https://dash.deno.com
 - **Docs Fresh 2.x** : https://fresh.deno.dev
-- **GitHub Repository** : https://github.com/imocourtois/champ-lab
+- **GitHub Repository** : https://github.com/Simon256px/champ-lab
 
 ---
 
