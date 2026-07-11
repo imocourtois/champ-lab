@@ -1,3 +1,4 @@
+
 # CHAMP LAB
 
 > Vois ce que tes runes et tes objets font **vraiment** — champion par champion.
@@ -15,7 +16,7 @@ précis, contre une cible précise.
 - **Sobre par conception** — calcul côté client sur données statiques versionnées par patch, îlots Fresh (≈ 0
   JS ailleurs), esthétique 100% CSS.
 
----
+<img width="1060" height="935" alt="champ" src="https://github.com/user-attachments/assets/305a20a5-d85f-48eb-99c0-1821097c1084" />
 
 ## ⚠ Statut
 
